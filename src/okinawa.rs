@@ -1,3 +1,4 @@
+
 pub enum VerbType {
           // headword ending, nonpast negative, gerund
     Ia1,  // in, ran, ti
@@ -20,22 +21,10 @@ pub enum VerbType {
 }
 
 /*
-派生語幹+uN/iN/N
+PRED predicative
+ATT attributive - attributive is a word or phrase within a noun phrase that modifies the head noun
+ru = attributive
 
-1k
-1g
-1t
-1t
-1s
-1s
-1j
-1j
-1r
-1r
-*/
-
-
-/*
 基本語幹 	連用語幹 	派生語幹 	音便語幹
 那覇方言の第1種動詞の語幹
 書く 	ka 	k 	c 	c 	c 	kacuN(書く)、cicuN(聞く)、sacuN(咲く)、ʔaQcuN(歩く)
@@ -44,8 +33,8 @@ pub enum VerbType {
 育つ 	sura 	t 	c 	c 	c 	suracuN(育つ)、tamucuN(保つ)、kucuN(朽ちる)
 殺す 	kuru 	s 	s 	s 	c 	kurusuN(殺す)、meesuN(燃やす)、haNsuN(外す)
 為る 	‐ 	s 	s 	s 	s 	suN(為る)、siQkwasuN(敷く)、hiQkoosuN(比較する)
-呼ぶ 	ju 	b 	b 	b 	r 	jubuN(呼ぶ)、tubuN(飛ぶ)、musubuN(結ぶ)
-読む 	ju 	m 	m 	m 	r 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
+呼ぶ 	ju 	b 	b 	b 	r/d 	jubuN(呼ぶ)、tubuN(飛ぶ)、musubuN(結ぶ)
+読む 	ju 	m 	m 	m 	r/d 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
 眠る 	niN 	r 	z 	z 	t 	niNzuN(眠る)、kaNzuN(被る)、ʔaNzuN(あぶる)
 見る 	NN 	r 	z 	z 	c 	NNzuN(見る)、kuNzuN(括る)
 
@@ -136,7 +125,6 @@ pub enum VerbTypes {
     II2,
     II3,
     II4,
-    II5,
     III,
     IV
 }
@@ -148,7 +136,21 @@ pub enum VerbStem {
     Euphonic    // 音便語幹 euphonic change stem
 }
 
-// truncate_chars()
+/*
+nonpastconclusive
+nonpastattributive
+pastconclusive
+pastattributive
+adverbial
+potential
+desiderative wanting to
+yes/no interrogative
+wh-interrogative
+
+polite
+honorific
+humble
+*/
 
 fn get_verb_stem(word: &str, verb_stem: VerbStem, verb_type: VerbTypes) -> String {
     let stem = match verb_type {
@@ -160,59 +162,121 @@ fn get_verb_stem(word: &str, verb_stem: VerbStem, verb_type: VerbTypes) -> Strin
     match (verb_type, verb_stem) {
         (_, VerbStem::Derivative) => stem.to_string(),
 
-        (I1, VerbStem::Base)       => replace_last(stem, "k"),
-        (I1, VerbStem::Connective) => replace_last(stem, "c"),
-        (I1, VerbStem::Euphonic)   => replace_last(stem, "c"),
+        (VerbTypes::I1, VerbStem::Base)       => replace_last(stem, "k"),
+        (VerbTypes::I1, VerbStem::Connective) => replace_last(stem, "c"),
+        (VerbTypes::I1, VerbStem::Euphonic)   => replace_last(stem, "c"),
 
-        (I2, VerbStem::Base)       => replace_last(stem, "g"),
-        (I2, VerbStem::Connective) => replace_last(stem, "z"),
-        (I2, VerbStem::Euphonic)   => replace_last(stem, "z"),
+        (VerbTypes::I2, VerbStem::Base)       => replace_last(stem, "g"),
+        (VerbTypes::I2, VerbStem::Connective) => replace_last(stem, "z"),
+        (VerbTypes::I2, VerbStem::Euphonic)   => replace_last(stem, "z"),
 
-        (I3, VerbStem::Base)       => replace_last(stem, "t"),
-        (I3, VerbStem::Connective) => replace_last(stem, "c"),
-        (I3, VerbStem::Euphonic)   => replace_last(stem, "Qc"),
+        (VerbTypes::I3, VerbStem::Base)       => replace_last(stem, "t"),
+        (VerbTypes::I3, VerbStem::Connective) => replace_last(stem, "c"),
+        (VerbTypes::I3, VerbStem::Euphonic)   => replace_last(stem, "Qc"),
 
-        (I4, VerbStem::Base)       => replace_last(stem, "t"),
-        (I4, VerbStem::Connective) => replace_last(stem, "c"),
-        (I4, VerbStem::Euphonic)   => replace_last(stem, "c"),
+        (VerbTypes::I4, VerbStem::Base)       => replace_last(stem, "t"),
+        (VerbTypes::I4, VerbStem::Connective) => replace_last(stem, "c"),
+        (VerbTypes::I4, VerbStem::Euphonic)   => replace_last(stem, "c"),
 
-        (I5, VerbStem::Base)       => replace_last(stem, "s"),
-        (I5, VerbStem::Connective) => replace_last(stem, "s"),
-        (I5, VerbStem::Euphonic)   => replace_last(stem, "c"),
+        (VerbTypes::I5, VerbStem::Base)       => replace_last(stem, "s"),
+        (VerbTypes::I5, VerbStem::Connective) => replace_last(stem, "s"),
+        (VerbTypes::I5, VerbStem::Euphonic)   => replace_last(stem, "c"),
 
-        (I6, VerbStem::Base)       => replace_last(stem, "s"),
-        (I6, VerbStem::Connective) => replace_last(stem, "s"),
-        (I6, VerbStem::Euphonic)   => replace_last(stem, "s"),
+        (VerbTypes::I6, VerbStem::Base)       => replace_last(stem, "s"),
+        (VerbTypes::I6, VerbStem::Connective) => replace_last(stem, "s"),
+        (VerbTypes::I6, VerbStem::Euphonic)   => replace_last(stem, "s"),
 
-        (I7, VerbStem::Base)       => replace_last(stem, "b"),
-        (I7, VerbStem::Connective) => replace_last(stem, "b"),
-        (I7, VerbStem::Euphonic)   => replace_last(stem, "r"),
+        (VerbTypes::I7, VerbStem::Base)       => replace_last(stem, "b"),
+        (VerbTypes::I7, VerbStem::Connective) => replace_last(stem, "b"),
+        (VerbTypes::I7, VerbStem::Euphonic)   => replace_last(stem, "r"),
 
-        (I8, VerbStem::Base)       => replace_last(stem, "m"),
-        (I8, VerbStem::Connective) => replace_last(stem, "m"),
-        (I8, VerbStem::Euphonic)   => replace_last(stem, "r"),
+        (VerbTypes::I8, VerbStem::Base)       => replace_last(stem, "m"),
+        (VerbTypes::I8, VerbStem::Connective) => replace_last(stem, "m"),
+        (VerbTypes::I8, VerbStem::Euphonic)   => replace_last(stem, "r"),
 
-        (I9, VerbStem::Base)       => replace_last(stem, "r"),
-        (I9, VerbStem::Connective) => replace_last(stem, "z"),
-        (I9, VerbStem::Euphonic)   => replace_last(stem, "t"),
+        (VerbTypes::I9, VerbStem::Base)       => replace_last(stem, "r"),
+        (VerbTypes::I9, VerbStem::Connective) => replace_last(stem, "z"),
+        (VerbTypes::I9, VerbStem::Euphonic)   => replace_last(stem, "t"),
 
-        (I10, VerbStem::Base)       => replace_last(stem, "r"),
-        (I10, VerbStem::Connective) => replace_last(stem, "z"),
-        (I10, VerbStem::Euphonic)   => replace_last(stem, "c"),
+        (VerbTypes::I10, VerbStem::Base)       => replace_last(stem, "r"),
+        (VerbTypes::I10, VerbStem::Connective) => replace_last(stem, "z"),
+        (VerbTypes::I10, VerbStem::Euphonic)   => replace_last(stem, "c"),
+
+        (VerbTypes::II1, VerbStem::Base)       => format!("{}{}", stem, "r"),
+        (VerbTypes::II1, VerbStem::Connective) => stem.to_string(),
+        // (VerbTypes::II1, VerbStem::Connective) => format!("{}{}", stem, "y"),
+        (VerbTypes::II1, VerbStem::Euphonic)   => format!("{}{}", stem, "Qt"),
+
+        (VerbTypes::II2, VerbStem::Base)       => format!("{}{}", stem, "r"),
+        (VerbTypes::II2, VerbStem::Connective) => stem.to_string(),
+        // (VerbTypes::II2, VerbStem::Connective) => format!("{}{}", stem, "y"),
+        (VerbTypes::II2, VerbStem::Euphonic)   => format!("{}{}", stem, "t"),
+
+        (VerbTypes::II3, VerbStem::Base)       => format!("{}{}", stem, "r"),
+        (VerbTypes::II3, VerbStem::Connective) => stem.to_string(),
+        // (VerbTypes::II3, VerbStem::Connective) => format!("{}{}", stem, "j"),
+        (VerbTypes::II3, VerbStem::Euphonic)   => format!("{}{}", stem, "Qc"),
+        
+        (VerbTypes::II4, VerbStem::Base)       => format!("{}{}", stem, "r"),
+        (VerbTypes::II4, VerbStem::Connective) => stem.to_string(),
+        // (VerbTypes::II4, VerbStem::Connective) => format!("{}{}", stem, "z"),
+        (VerbTypes::II4, VerbStem::Euphonic)   => format!("{}{}", stem, "c"),
+        // (VerbTypes::II4, VerbStem::Euphonic)   => replace_last(stem, "Qt"),
+
+        (VerbTypes::III, VerbStem::Base)       => format!("{}{}", stem, "r"),
+        (VerbTypes::III, VerbStem::Connective) => stem.to_string(), // ○/j/i
+        (VerbTypes::III, VerbStem::Euphonic)   => format!("{}{}", stem, "t"),
+
+        _ => "".to_string()
+    }
+}
+
+pub fn conjugate_verbs(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) -> String {
+    match conjugation {
+        VerbConjugation::NonPastNegative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "aN"),
+        VerbConjugation::PastNegative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "aNtaN"),
+        VerbConjugation::Past => format!("{}{}", get_verb_stem(verb,VerbStem::Euphonic,vt), "aN"),
+
+        VerbConjugation::NonPastPolite => match vt {
+            VerbTypes::III => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"), // or ibiiN
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "abiiN")
+        },
+
+        VerbConjugation::Honorific => match vt {
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "imiseeN"),
+        },
+        VerbConjugation::Potential => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ijuusuN"),
+        VerbConjugation::Desiderative => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ibusaN"),
+
+        VerbConjugation::Imperative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "ee"),
+        VerbConjugation::ImperativeNegative => match vt {
+            VerbTypes::II1 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt).to_owned(), "nna"),
+            VerbTypes::II2 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
+            VerbTypes::II3 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
+            VerbTypes::II4 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "una"),
+        }
+
         _ => "".to_string()
     }
 }
 
 // 辞書形 = 派生語幹 + うん/いん/ん = 非過去
 
-pub enum ABC {
     // 未然形
     // 基本語幹+a
     // N（否定） NonPastNegative
     // riiN（可能・受身） Potential
     // suN(使役) Causative
     // a・wa(仮定条件)
-    Causative
 
     // 条件形I
     // 基本語幹+ee
@@ -278,14 +342,23 @@ pub enum ABC {
 
     // 継続形
     // 音便語幹+ooN。動作の結果あるいは継続進行を表す[20]。「〜している」などと訳される。
-    
-}
 
 pub enum VerbConjugation {
     NonPast,         // in/un does 辞書形
     ClauseEnding,    // i, does/ and 連用形
     Connective,      // (y)a
     NonPastNegative, // ~an 否定形
+
+    Past,
+    PastNegative, // ~antan
+
+    Honorific,
+    Potential, // able to ~juusun
+    Desiderative, // desire, want to
+    Imperative,
+    ImperativeNegative, // prohibitive
+    
+    
     Gerund,           // ti ティ形
     NonPastPolite,   // biin
     NonPastNegativePolite, // biran
@@ -373,29 +446,6 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
     }
 }
 
-
-// headword, adverbial form, negative form
-// san, ku, koo neen
-// s(h)an, shiku, shikoo neen
-
-// tall: takasan, takaku (na-in), takakoo neen
-//  tall, becomes tall,  not tall
-
-// strange, unusual: hirumasan, hurmashiku nain, hirumashikoo neen
-// strange, become strange, not strange
-
-// unpredictable examples
-// hissan, hishiku, hishikoo neen: thin, weak
-// wassan, waruku, warukoo neen: bad, evil
-
-
-// have: muchun IIb2
-// mutan, mutchi
-
-// swell: muchun IIb1
-// mukan, muchi
-
-
 /*
 Ia1 (tuin,take),(wakain,understand)
 Ia2 warain, laugh
@@ -456,33 +506,95 @@ mod tests {
         assert_eq!(get_verb_stem("cicuN",VerbStem::Base,VerbTypes::I1), "cik".to_string());
         assert_eq!(get_verb_stem("cicuN",VerbStem::Connective,VerbTypes::I1), "cic".to_string());
         assert_eq!(get_verb_stem("cicuN",VerbStem::Euphonic,VerbTypes::I1), "cic".to_string());
+
+        assert_eq!(get_verb_stem("uN",VerbStem::Base,VerbTypes::III), "ur".to_string());
+        assert_eq!(get_verb_stem("uN",VerbStem::Connective,VerbTypes::III), "u".to_string());
+        assert_eq!(get_verb_stem("uN",VerbStem::Euphonic,VerbTypes::III), "ut".to_string());
+
+        assert_eq!(get_verb_stem("jaN",VerbStem::Base,VerbTypes::III), "jar".to_string());
+        assert_eq!(get_verb_stem("jaN",VerbStem::Connective,VerbTypes::III), "ja".to_string());
+        assert_eq!(get_verb_stem("jaN",VerbStem::Euphonic,VerbTypes::III), "jat".to_string());
+
+        assert_eq!(conjugate_verbs("jaN",VerbTypes::III, VerbConjugation::NonPastNegative), "jaraN".to_string());
+
+        assert_eq!(get_verb_stem("jumuN",VerbStem::Base,VerbTypes::I8), "jum".to_string());
+        assert_eq!(get_verb_stem("jumuN",VerbStem::Connective,VerbTypes::I8), "jum".to_string());
+        assert_eq!(get_verb_stem("jumuN",VerbStem::Euphonic,VerbTypes::I8), "jur".to_string());
+
+        // conjugations
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::NonPastNegative), "kakaN".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::PastNegative), "kakaNtaN".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Past), "kacaN".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::NonPastPolite), "kacabiiN".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Desiderative), "kacibusaN".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Honorific), "kacimiseeN".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Imperative), "kakee".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::ImperativeNegative), "kakuna".to_string());
+        
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::NonPastNegative), "mutaN".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::PastNegative), "mutaNtaN".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Past), "muQcaN".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::NonPastPolite), "mucabiiN".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Desiderative), "mucibusaN".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Imperative), "mutee".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::ImperativeNegative), "mutuna".to_string());
+        
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::NonPastNegative), "jumaN".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::PastNegative), "jumaNtaN".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Past), "juraN".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::NonPastPolite), "jumabiiN".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Desiderative), "jumibusaN".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Honorific), "jumimiseeN".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Imperative), "jumee".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::ImperativeNegative), "jumuna".to_string());
+        
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::NonPastNegative), "turaN".to_string());
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::PastNegative), "turaNtaN".to_string());
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Past), "tutaN".to_string());
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Desiderative), "tuibusaN".to_string()); // tuibusaN
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Honorific), "tumiseeN".to_string()); // tuibusaN
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Imperative), "turee".to_string()); // tuibusaN
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::ImperativeNegative), "tunna".to_string()); // tuibusaN
     }
 }
 
-
 /*
-語幹末
-基本語幹 	連用語幹 	派生語幹 	音便語幹
+biraN
+bira
+biraa
+biree
 
-書く 	ka 	k 	c 	c 	c 	kacuN(書く)、cicuN(聞く)、sacuN(咲く)、ʔaQcuN(歩く)
-漕ぐ 	kuu 	g 	z 	z 	z 	kuuzuN(漕ぐ)、ʔwiizuN(泳ぐ)、ʔoozuN(扇ぐ)
-立つ 	ta 	t 	c 	c 	Qc 	tacuN(立つ)、ʔucuN(打つ)、kacuN(勝つ)
-育つ 	sura 	t 	c 	c 	c 	suracuN(育つ)、tamucuN(保つ)、kucuN(朽ちる)
-殺す 	kuru 	s 	s 	s 	c 	kurusuN(殺す)、meesuN(燃やす)、haNsuN(外す)
-為る 	‐ 	s 	s 	s 	s 	suN(為る)、siQkwasuN(敷く)、hiQkoosuN(比較する)
-呼ぶ 	ju 	b 	b 	b 	r 	jubuN(呼ぶ)、tubuN(飛ぶ)、musubuN(結ぶ)
-読む 	ju 	m 	m 	m 	r 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
-眠る 	niN 	r 	z 	z 	t 	niNzuN(眠る)、kaNzuN(被る)、ʔaNzuN(あぶる)
-見る 	NN 	r 	z 	z 	c 	NNzuN(見る)、kuNzuN(括る)
+biin
+biiru
+biiru
+biira
+biishi
+biishee
+biishiga
+biikutu
 
+biitaN
+biitaru
+biitaru
+biitara
+biitashi
+biitashee
+biitakutu
+biitaga
+biitii
 
-
-取る 	tu 	r 	○/j 	○ 	Qt 	tuiN(取る)
-刈る 	ka 	r 	○/j 	○ 	t 	kaiN(刈る)、nubuiN(登る)、ʔaraiN(洗う)
-蹴る 	ki 	r 	○/j 	○ 	Qc 	kiiN(蹴る)、ʔiiN(入る)、hiiN(放る)、ciiN(切る)
-煮る 	ni 	r 	○/j 	○ 	c/(Qt) 	niiN(煮る)、ciiN(着る)、ʔiiN(言う)、iiN(座る)
-
-
+bitan
+bitaru
+bitaru
+bitara
+bitashi
+bitashee
+bitashiga
+bitakutu
+bitaga
+bitii
+*/
+/*
 ぐゑ 	ぐゎ gwe gwa
 くゑ 	くゎ kwe kwa
 ゑ we
