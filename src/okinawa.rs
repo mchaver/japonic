@@ -1,3 +1,6 @@
+pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
+    ("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
+];
 
 pub enum VerbType {
           // headword ending, nonpast negative, gerund
@@ -136,22 +139,6 @@ pub enum VerbStem {
     Euphonic    // 音便語幹 euphonic change stem
 }
 
-/*
-nonpastconclusive
-nonpastattributive
-pastconclusive
-pastattributive
-adverbial
-potential
-desiderative wanting to
-yes/no interrogative
-wh-interrogative
-
-polite
-honorific
-humble
-*/
-
 fn get_verb_stem(word: &str, verb_stem: VerbStem, verb_type: VerbTypes) -> String {
     let stem = match verb_type {
         VerbTypes::III => truncate_chars(word, (word.chars().count() - 1)),
@@ -246,6 +233,21 @@ pub fn conjugate_verbs(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) 
             _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "abiiN")
         },
 
+        VerbConjugation::YesNoInterrogative => match vt{
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "umi"),
+        }
+        VerbConjugation::WhInterrogative => match vt{
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "uga"),
+        }
+        
         VerbConjugation::Honorific => match vt {
             VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
             VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
@@ -274,7 +276,7 @@ pub fn conjugate_verbs(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) 
     // 未然形
     // 基本語幹+a
     // N（否定） NonPastNegative
-    // riiN（可能・受身） Potential
+    // riiN（可能・受身） Passive
     // suN(使役) Causative
     // a・wa(仮定条件)
 
@@ -352,12 +354,17 @@ pub enum VerbConjugation {
     Past,
     PastNegative, // ~antan
 
+    YesNoInterrogative, // ~mi
+    WhInterrogative, // ~ga
+
     Honorific,
     Potential, // able to ~juusun
     Desiderative, // desire, want to
     Imperative,
     ImperativeNegative, // prohibitive
-    
+
+    Causative, // ~sun
+    Passive, // riiN rijuN
     
     Gerund,           // ti ティ形
     NonPastPolite,   // biin
@@ -530,6 +537,8 @@ mod tests {
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Honorific), "kacimiseeN".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Imperative), "kakee".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::ImperativeNegative), "kakuna".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::YesNoInterrogative), "kacumi".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::WhInterrogative), "kacuga".to_string());
         
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::NonPastNegative), "mutaN".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::PastNegative), "mutaNtaN".to_string());
@@ -538,6 +547,8 @@ mod tests {
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Desiderative), "mucibusaN".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Imperative), "mutee".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::ImperativeNegative), "mutuna".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::YesNoInterrogative), "mucumi".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::WhInterrogative), "mucuga".to_string());
         
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::NonPastNegative), "jumaN".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::PastNegative), "jumaNtaN".to_string());
@@ -547,6 +558,8 @@ mod tests {
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Honorific), "jumimiseeN".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Imperative), "jumee".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::ImperativeNegative), "jumuna".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::YesNoInterrogative), "jumumi".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::WhInterrogative), "jumuga".to_string());
         
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::NonPastNegative), "turaN".to_string());
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::PastNegative), "turaNtaN".to_string());
@@ -555,6 +568,8 @@ mod tests {
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Honorific), "tumiseeN".to_string()); // tuibusaN
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Imperative), "turee".to_string()); // tuibusaN
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::ImperativeNegative), "tunna".to_string()); // tuibusaN
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::YesNoInterrogative), "tuimi".to_string());
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::WhInterrogative), "tuiga".to_string());
     }
 }
 
