@@ -40,6 +40,7 @@ ru = attributive
 読む 	ju 	m 	m 	m 	r/d 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
 眠る 	niN 	r 	z 	z 	t 	niNzuN(眠る)、kaNzuN(被る)、ʔaNzuN(あぶる)
 見る 	NN 	r 	z 	z 	c 	NNzuN(見る)、kuNzuN(括る)
+死ぬ 	shi     n       n       n       j       shinuN 死ぬん
 
 那覇方言の第2種動詞の語幹
 取る 	tu 	r 	○/j 	○ 	Qt 	tuiN(取る)
@@ -49,69 +50,7 @@ ru = attributive
 
 那覇方言の第3種動詞の語幹
 有る 	ʔa 	r 	○/j/i 	○ 	t 	ʔaN(有る)、uN(居る)、jaN(である)
-
-かちゃびーん　書きます
-ちちゃびーん　聞きます
-さちゃびーん　咲きます
-っあっちゃびーん　歩きます
-
-くーじゃびーん　漕ぎます　（こぐ）
-っゐーじゃびーん　泳ぎます
-っおーじゃびーん　扇ぎます　（あおぐ）
-
-っうちゃびーん　立ちます
-うちゃびーん　打つ
-かちゃびーん　勝つ
-
-すらちゃびーん 育つ
-たむちゃびーん　保つ　たもつ
-くちゃびーん　朽ちる　くちる
-
-くるさびーん　殺します
-めーさびーん　燃やす
-はんさびーん　外す　はずす
-
-さびーん　します
-すぃっくゎさびーん　敷きます
-ひっこーさびーん　比較します
-
-ゆばびーん　呼びます
-とぅばびーん　飛びます
-むすばびーん　結びます
-
-ゆまびーん　読む
-ぬまびーん　飲む
-っあまびーん　編む
-
-にんじゃびーん　眠ります
-かんじゃびーん　被る
-っあんじゃびーん　あぶる
-
-んんじゃびーん　見る
-くんじゃびーん　括る　くくる
-
-うきやびーん　起きます
-かまびーん　食べます
-ゆまびーん　読みます
-さびーん　します
-しなびーん　死にます
-とぅばびーん　飛びます
-はなさびーん　話します
-かちゃびーん　書きます
-たちゃびーん　立ちます
-っゐーじゃびーん　泳ぎます
-にんじゃびーん　寝ます
-とぅいびーん　　とります
-
-いちゃびーん　行きます
-ちゃーびーん　来ます
-いやびーん　言います
-
-うきやびらん　起きません
-かまびらん　食べません
-ゆまびらん　読みません
-さびらん　しません
- */
+*/
 
 pub enum VerbTypes {
     I1,
@@ -134,9 +73,221 @@ pub enum VerbTypes {
 
 pub enum VerbStem {
     Base,       // 基本語幹 base
+    // 基本語幹+a  : N（否定）, riiN（可能・受身）, suN(使役)
+    // 基本語幹+ee : 条件形, 命令形
+    // 基本語幹+i  : 命令形
+    // 基本語幹+u  : na(な。禁止), ka(まで), kazirii(まで・かぎり)
+
     Connective, // 連用語幹 connective
+    // 連用語幹+i : ga(〜しに), ciroo(〜しそう), uusuN(〜できる), busaN(〜したい)
+    // 連用語幹+(j)abiiN/ibiiN :
+
+    // 連用形 をり
+
     Derivative, // 派生語幹 derivative stem
+    // 派生語幹+uN/iN/N          : 終止形(現在形)
+    // 派生語幹+uru/iru/ru       : baa(〜時)、hazi(〜はず), ru(ぞ)
+    // 派生語幹+ura/ira/ra       : 疑問の助詞ga(か)
+    // 派生語幹+uraa/iraa/raa    : 「〜なら」という条件を表す。
+    // 派生語幹+u/i/○            : si（の）、siga（〜のだが）、sa（よ）、gutu（理由）、ga（疑問）、mi・i（たずね）
+    // 派生語幹+utaN/itaN/taN    : 〜していた = 過去進行形
+    // 派生語幹+uti/iti/ti       : 〜していたか = 過去進行中止形
+    // 派生語幹+uteeN/iteeN/teeN : 〜していただろう = 過去進行推量形
+
     Euphonic    // 音便語幹 euphonic change stem
+    // 音便語幹+i   : 〜して
+    // 音便語幹+aN  : 〜した
+    // 音便語幹+eeN : (今までに)きっと〜している,〜したに違いない,〜してある
+    // 音便語幹+ooN : 〜している
+}
+
+pub enum VerbConjugation {
+    NonPast,         // in/un/n does 辞書形
+    NonPastNegative, // ~an 否定形
+    Past,            // ~an
+    PastNegative,    // ~antan
+
+    // ClauseEnding,    // i, does/ and 連用形
+    // Connective,      // (y)a
+
+    YesNoInterrogative, // ~mi
+    WhInterrogative, // ~ga
+
+    Honorific,
+    Potential, // able to ~juusun
+    Desiderative, // desire, want to
+    Imperative,
+    ImperativeNegative, // prohibitive
+
+    Volitional,
+    Causative, // ~sun
+    Passive, // riiN rijuN
+    Continuative, // ti form
+    AttributiveNonPast, // N -> ru
+    AttributivePast, // N -> ru
+    Progressive, // 
+    
+    Gerund,           // 音便語幹+i   : 〜して, ti ティ形
+    NonPastPolite,   // biin
+    NonPastNegativePolite, // biran
+    InterrogativePolite, // biimi
+    InterrogativePoliteII, // biiga
+    PastPolite, // bitan
+    PastNegativePoilte, // birantan
+    InterrogativePastPolite, // bitii
+    InterrogativePastPoliteII // bitiiga
+}
+
+
+pub fn conjugate_iv_verbs(verb: &str, conjugation: VerbConjugation) -> &str {
+    if verb == "chuun" {
+        match conjugation {
+            VerbConjugation::NonPastNegative => "kuun",
+            VerbConjugation::PastNegative => "kuuntan",
+            VerbConjugation::Past => "chan",
+            VerbConjugation::NonPastPolite => "chaabiin",
+            VerbConjugation::YesNoInterrogative => "chuumi",
+            VerbConjugation::WhInterrogative => "chuuga",
+            VerbConjugation::Imperative => "kuu",
+            VerbConjugation::ImperativeNegative => "kuuna",
+            VerbConjugation::Causative => "kuurasun",
+            VerbConjugation::AttributiveNonPast => "chuuru",
+            VerbConjugation::AttributivePast => "charu",
+            VerbConjugation::Progressive => "choon",
+            _ => ""
+        }
+    } else if verb == "yan" { // to be (copula)
+        match conjugation {
+            VerbConjugation::NonPastNegative => "aran",
+            VerbConjugation::PastNegative => "arantan",
+            VerbConjugation::Past => "yatan",
+            VerbConjugation::NonPastPolite => "yaibiin", // yayabiin
+            // attributive yaru
+            // attriute past yataru
+            _ => ""
+        }
+    } else if verb == "sun" { // to do
+        match conjugation {
+            VerbConjugation::NonPastNegative => "san",
+            VerbConjugation::PastNegative => "santan",
+            VerbConjugation::Past => "san",
+            VerbConjugation::NonPastPolite => "sabiin",
+            _ => ""
+        }
+    } else if verb == "an" { // to be (inanimate)
+        match conjugation {
+            VerbConjugation::NonPastNegative => "neeran", // neen
+            VerbConjugation::PastNegative => "neerantan",
+            VerbConjugation::Past => "neeran",
+            VerbConjugation::NonPastPolite => "ayabiin",
+            _ => ""
+        }
+    } else if verb == "'yun" { // to say
+        match conjugation {
+            VerbConjugation::NonPastNegative => "'yan",
+            VerbConjugation::PastNegative => "'yantan",
+            VerbConjugation::Past => "'yan",
+            VerbConjugation::NonPastPolite => "'yabiin",
+
+            VerbConjugation::YesNoInterrogative => "qyurumi",
+            VerbConjugation::WhInterrogative => "qyuruga",
+            VerbConjugation::Imperative => "ii",
+            VerbConjugation::ImperativeNegative => "qyuna",
+            VerbConjugation::Causative => "qyashimiyun", // qyashimiin
+            VerbConjugation::AttributiveNonPast => "qyuru",
+            VerbConjugation::AttributivePast => "icharu",
+            VerbConjugation::Progressive => "qnjoon",
+            // ii-busan desire, ii-busatan
+            // ichi te form
+            // seems: qyuru-haji qyan-haji
+            _ => ""
+        }
+    } else if verb == "umuin" { // to think
+        match conjugation {
+            VerbConjugation::NonPastNegative => "umaan", // umuran
+            VerbConjugation::PastNegative => "umaantan", // umurantan
+            VerbConjugation::Past => "umaan",
+            VerbConjugation::NonPastPolite => "umuyabiin", // umuibiin
+            _ => ""
+        }
+    } else if verb == "ichun" { // to go
+        match conjugation {
+            VerbConjugation::NonPastNegative => "ikan",
+            VerbConjugation::PastNegative => "ikantan",
+            VerbConjugation::Past => "ikan",
+            VerbConjugation::NonPastPolite => "ichabiin",
+
+            VerbConjugation::YesNoInterrogative => "ichumi",
+            VerbConjugation::WhInterrogative => "ichuga",
+            VerbConjugation::Imperative => "iki",
+            VerbConjugation::ImperativeNegative => "ikuna",
+            VerbConjugation::Causative => "ikasun",
+            VerbConjugation::AttributiveNonPast => "ichuru",
+            VerbConjugation::AttributivePast => "'njaru",
+            VerbConjugation::Progressive => "qnjoon",
+            // prgressive 'qnjoon
+            // lets' ika
+            // seems ichuru-haji ikan-haji
+            // 'nji te form
+            _ => ""
+        }
+    } else {
+        ""
+    }
+}
+
+pub fn conjugate_verbs(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) -> String {
+    match conjugation {
+        VerbConjugation::NonPastNegative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "aN"),
+        VerbConjugation::PastNegative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "aNtaN"),
+        VerbConjugation::Past => format!("{}{}", get_verb_stem(verb,VerbStem::Euphonic,vt), "aN"),
+
+        VerbConjugation::NonPastPolite => match vt {
+            VerbTypes::III => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"), // or ibiiN
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "abiiN")
+        },
+
+        VerbConjugation::YesNoInterrogative => match vt{
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "umi"),
+        }
+        VerbConjugation::WhInterrogative => match vt{
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "uga"),
+        }
+        
+        VerbConjugation::Honorific => match vt {
+            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "imiseeN"),
+        },
+        VerbConjugation::Potential => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ijuusuN"),
+        VerbConjugation::Desiderative => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ibusaN"),
+
+        VerbConjugation::Imperative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "ee"),
+        VerbConjugation::ImperativeNegative => match vt {
+            VerbTypes::II1 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt).to_owned(), "nna"),
+            VerbTypes::II2 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
+            VerbTypes::II3 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
+            VerbTypes::II4 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
+            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "una"),
+        }
+
+        VerbConjugation::Gerund => format!("{}{}", get_verb_stem(verb,VerbStem::Euphonic,vt), "i"),
+        _ => "".to_string()
+    }
 }
 
 fn get_verb_stem(word: &str, verb_stem: VerbStem, verb_type: VerbTypes) -> String {
@@ -218,179 +369,6 @@ fn get_verb_stem(word: &str, verb_stem: VerbStem, verb_type: VerbTypes) -> Strin
     }
 }
 
-pub fn conjugate_verbs(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) -> String {
-    match conjugation {
-        VerbConjugation::NonPastNegative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "aN"),
-        VerbConjugation::PastNegative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "aNtaN"),
-        VerbConjugation::Past => format!("{}{}", get_verb_stem(verb,VerbStem::Euphonic,vt), "aN"),
-
-        VerbConjugation::NonPastPolite => match vt {
-            VerbTypes::III => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"), // or ibiiN
-            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
-            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
-            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
-            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "jabiiN"),
-            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "abiiN")
-        },
-
-        VerbConjugation::YesNoInterrogative => match vt{
-            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
-            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
-            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
-            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "imi"),
-            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "umi"),
-        }
-        VerbConjugation::WhInterrogative => match vt{
-            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
-            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
-            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
-            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "iga"),
-            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Derivative,vt), "uga"),
-        }
-        
-        VerbConjugation::Honorific => match vt {
-            VerbTypes::II1 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
-            VerbTypes::II2 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
-            VerbTypes::II3 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
-            VerbTypes::II4 => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "miseeN"),
-            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "imiseeN"),
-        },
-        VerbConjugation::Potential => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ijuusuN"),
-        VerbConjugation::Desiderative => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ibusaN"),
-
-        VerbConjugation::Imperative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "ee"),
-        VerbConjugation::ImperativeNegative => match vt {
-            VerbTypes::II1 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt).to_owned(), "nna"),
-            VerbTypes::II2 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
-            VerbTypes::II3 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
-            VerbTypes::II4 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
-            _ => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "una"),
-        }
-
-        _ => "".to_string()
-    }
-}
-
-// 辞書形 = 派生語幹 + うん/いん/ん = 非過去
-
-    // 未然形
-    // 基本語幹+a
-    // N（否定） NonPastNegative
-    // riiN（可能・受身） Passive
-    // suN(使役) Causative
-    // a・wa(仮定条件)
-
-    // 条件形I
-    // 基本語幹+ee
-    // 単独で条件を表す。未然形を使った仮定条件と違って既定条件を表し、文脈によって「〜なら」とも「〜ので」とも訳せる
-
-    // 命令形1
-    // 基本語幹+i。
-    // 単独で命令を表す。ImperativeI
-
-    // 命令形2
-    // 基本語幹+ee。
-    // 同じく命令を表す。ImperativeII
-
-    // 連体形1
-    // 基本語幹+u。
-    // na(な。禁止) ImperativeNegative
-    // ka(まで) Until
-    // kazirii(まで・かぎり)などが付く。
-
-    // 連用形
-    // 連用語幹+i。
-    // ga(〜しに)
-    // ciroo(〜しそう) Volitional
-    // uusuN(〜できる) Potential
-    // busaN(〜したい)などが付く。 Desire
-
-    // 丁寧形
-    // 連用語幹+(j)abiiN/ibiiN。第1種動詞では連用語幹+abiiN、第2種動詞では頭語幹+jabiiN、第3種動詞では頭語幹+jabiiNまたは頭語幹+ibiiNとなる[17]。日本語の「〜ます」にあたる。
-
-    // 終止形(現在形)
-    // 派生語幹+uN/iN/N。第1種動詞にはuNが、第2種動詞にはiNが、第3種動詞にはNが付く[17]。派生語幹から成る活用形は連体形以下も同様にu/i/○の交替がある。なお、第2種動詞の終止形語尾をiNではなくjuNとしている辞書等もある。iNはjuNの慣用形だが[18]、20世紀後半にはjuNは高齢層で稀に聞かれるだけとなり、ほぼiNに統一された[17]。かつての首里方言ではjuN・iN並存だった。
-
-    // 終止形(現在形)は、未来や、特定の時間に限定されない行為を表すほかに、現在のことを表す点が日本語と異なる。すなわち、日本語で「新聞を読んでいる」と言うところを、現在形でsiNbuN junuNと言う[19]。沖縄方言の現在形は元々「をり」を含んでいる形であり、西日本方言で進行アスペクトを表す「連用形＋よる(をり)」との関係が考えられる。
-    // 連体形2
-    // 派生語幹+uru/iru/ru。後に名詞が続くほか、baa(〜時)、hazi(〜はず)などの語が付く。また、強調の助詞ru(ぞ)に呼応して係り結びをつくる。
-
-    // 未然形2(ga係り結び形)
-    // 派生語幹+ura/ira/ra。疑問の助詞ga(か)に呼応して係り結びをつくる。
-
-    // 条件形2
-    // 派生語幹+uraa/iraa/raa。「〜なら」という条件を表す。
-
-    // 準体形
-    // 派生語幹+u/i/○。si（の）、siga（〜のだが）、sa（よ）、gutu（理由）、ga（疑問）、mi・i（たずね）などが付く。
-
-    // 過去進行形
-    // 派生語幹+utaN/itaN/taN。過去における動作の進行を表す。「〜していた」。
-
-    // 過去進行中止形
-    // 派生語幹+uti/iti/ti。疑問の助詞iが付いて、過去における動作進行に対する疑問を表す。「〜していたか」。
-
-    // 過去進行推量形
-    // 派生語幹+uteeN/iteeN/teeN。過去における確実な動作進行の推量を表す。「〜していただろう」。
-
-    // 接続形
-    // 音便語幹+i。「〜して」の意味を表す。
-
-    // 過去形
-    // 音便語幹+aN。過去を表す。「〜した」。
-
-    // 完了形(確証過去形)
-    // 音便語幹+eeN。ある動作・行為の結果が現在残っていて、過去に確かにそれが行なわれたことを表す[15][20]。「(今までに)きっと〜している」「〜したに違いない」「〜してある」などと訳される[19]。
-
-    // 継続形
-    // 音便語幹+ooN。動作の結果あるいは継続進行を表す[20]。「〜している」などと訳される。
-
-pub enum VerbConjugation {
-    NonPast,         // in/un does 辞書形
-    ClauseEnding,    // i, does/ and 連用形
-    Connective,      // (y)a
-    NonPastNegative, // ~an 否定形
-
-    Past,
-    PastNegative, // ~antan
-
-    YesNoInterrogative, // ~mi
-    WhInterrogative, // ~ga
-
-    Honorific,
-    Potential, // able to ~juusun
-    Desiderative, // desire, want to
-    Imperative,
-    ImperativeNegative, // prohibitive
-
-    Causative, // ~sun
-    Passive, // riiN rijuN
-    
-    Gerund,           // ti ティ形
-    NonPastPolite,   // biin
-    NonPastNegativePolite, // biran
-    InterrogativePolite, // biimi
-    InterrogativePoliteII, // biiga
-    PastPolite, // bitan
-    PastNegativePoilte, // birantan
-    InterrogativePastPolite, // bitii
-    InterrogativePastPoliteII // bitiiga
-}
-
-/*
-ます形　　ビーン形
-ビーン 自動詩文　他動詩文
-ビラン　否定
-ビーミ　肯否質問文
-ビーガ　疑問
-ビタン　過去形
-ビランタン　否定　過去
-ビティー　肯否　過去
-ビタガ 疑問　過去
- */
-
-
-
 pub fn truncate_chars(s: &str, max_chars: usize) -> &str {
     match s.char_indices().nth(max_chars) {
         None => s,
@@ -401,111 +379,12 @@ pub fn truncate_chars(s: &str, max_chars: usize) -> &str {
 pub fn replace_last(x: &str, y: &str) -> String {
     format!("{}{}", truncate_chars(x, x.chars().count()-1), y)
 }
-/*
-pub fn replace_last<'a,'b,'c>(x: &'a str, y: &'b str) -> &'c str {
-    format!("{}{}", truncate_chars(x, x.chars().count()-1), y).to_owned()
-}
-*/
-
-// <'a>(reference: &'a
-
-pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) -> Option<String> {
-    match (vt,conjugation) {
-        (_, VerbConjugation::NonPast) => Some(verb.to_string()),
-
-        // Ia1
-        (VerbType::Ia1, VerbConjugation::ClauseEnding) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "i"))
-        },
-        (VerbType::Ia1, VerbConjugation::Connective) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "i"))
-        },
-        (VerbType::Ia1, VerbConjugation::NonPastNegative) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "ran"))
-        },
-        (VerbType::Ia1, VerbConjugation::Gerund) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "ti"))
-        },
-
-        // Ia2
-        (VerbType::Ia2, VerbConjugation::ClauseEnding) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "i"))
-        },
-        (VerbType::Ia2, VerbConjugation::Connective) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "i"))
-        },
-        (VerbType::Ia2, VerbConjugation::NonPastNegative) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "ran"))
-        },
-        (VerbType::Ia2, VerbConjugation::Gerund) => {
-            let left_side = truncate_chars(&verb, verb.chars().count() - 2);
-            Some(format!("{}{}", left_side, "ti"))
-        },            
-
-        _ => None
-    }
-}
-
-/*
-Ia1 (tuin,take),(wakain,understand)
-Ia2 warain, laugh
-Ib1 chiin, don (clothes)
-Ib2 chiin, cut it
-Ic1 yumariin, can read
-Ic2 iriin, put in
-IIa1 'wiijun, swim
-IIa2 kanjun, don (hats)
-IIa3 kunjun, tie up/down
-IIb1 kachun, write
-IIb2 tachun, stand up
-IIc nasun, give birth to
-IId yubun, call
-IIe yumun, read
-IIf shinun, die
-III wun, be (animate)
-IV
-menseen, come, go, be (exalting)
-chuun, come
-sun, do
-an, be (inanimate)
-yan, be (copula)
-'yun, say
-umuin, think
-ichun, go
-*/
 
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
-    fn test_conjugate_verb() {
-        assert_eq!(conjugate_verb("tuin",VerbType::Ia1,VerbConjugation::NonPast), Some("tuin".to_string()));
-        assert_eq!(conjugate_verb("tuin",VerbType::Ia1,VerbConjugation::ClauseEnding), Some("tui".to_string()));
-        assert_eq!(conjugate_verb("tuin",VerbType::Ia1,VerbConjugation::Connective), Some("tui".to_string()));
-        assert_eq!(conjugate_verb("tuin",VerbType::Ia1,VerbConjugation::NonPastNegative), Some("turan".to_string()));
-        assert_eq!(conjugate_verb("tuin",VerbType::Ia1,VerbConjugation::Gerund), Some("tuti".to_string()));
-
-        assert_eq!(conjugate_verb("wakain",VerbType::Ia1,VerbConjugation::NonPast), Some("wakain".to_string()));
-        assert_eq!(conjugate_verb("wakain",VerbType::Ia1,VerbConjugation::ClauseEnding), Some("wakai".to_string()));
-        assert_eq!(conjugate_verb("wakain",VerbType::Ia1,VerbConjugation::Connective), Some("wakai".to_string()));
-        assert_eq!(conjugate_verb("wakain",VerbType::Ia1,VerbConjugation::NonPastNegative), Some("wakaran".to_string()));
-        assert_eq!(conjugate_verb("wakain",VerbType::Ia1,VerbConjugation::Gerund), Some("wakati".to_string()));
-
-        assert_eq!(conjugate_verb("warain",VerbType::Ia2,VerbConjugation::NonPast), Some("warain".to_string()));
-        assert_eq!(conjugate_verb("warain",VerbType::Ia2,VerbConjugation::ClauseEnding), Some("warai".to_string()));
-        assert_eq!(conjugate_verb("warain",VerbType::Ia2,VerbConjugation::Connective), Some("warai".to_string()));
-        assert_eq!(conjugate_verb("warain",VerbType::Ia2,VerbConjugation::NonPastNegative), Some("wararan".to_string()));
-        assert_eq!(conjugate_verb("warain",VerbType::Ia2,VerbConjugation::Gerund), Some("warati".to_string()));
-
-
+    fn test_get_verb_stem() {
         assert_eq!(get_verb_stem("kacuN",VerbStem::Base,VerbTypes::I1), "kak".to_string());
         assert_eq!(get_verb_stem("kacuN",VerbStem::Connective,VerbTypes::I1), "kac".to_string());
         assert_eq!(get_verb_stem("kacuN",VerbStem::Euphonic,VerbTypes::I1), "kac".to_string());
@@ -522,12 +401,19 @@ mod tests {
         assert_eq!(get_verb_stem("jaN",VerbStem::Connective,VerbTypes::III), "ja".to_string());
         assert_eq!(get_verb_stem("jaN",VerbStem::Euphonic,VerbTypes::III), "jat".to_string());
 
-        assert_eq!(conjugate_verbs("jaN",VerbTypes::III, VerbConjugation::NonPastNegative), "jaraN".to_string());
-
         assert_eq!(get_verb_stem("jumuN",VerbStem::Base,VerbTypes::I8), "jum".to_string());
         assert_eq!(get_verb_stem("jumuN",VerbStem::Connective,VerbTypes::I8), "jum".to_string());
         assert_eq!(get_verb_stem("jumuN",VerbStem::Euphonic,VerbTypes::I8), "jur".to_string());
+    }
 
+    #[test]
+    fn test_iv() {
+
+    }
+
+    #[test]
+    fn test_conjugate_verb() {
+        assert_eq!(conjugate_verbs("jaN",VerbTypes::III, VerbConjugation::NonPastNegative), "jaraN".to_string());
         // conjugations
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::NonPastNegative), "kakaN".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::PastNegative), "kakaNtaN".to_string());
@@ -571,7 +457,54 @@ mod tests {
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::YesNoInterrogative), "tuimi".to_string());
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::WhInterrogative), "tuiga".to_string());
     }
+
+    #[test]
+    fn test_gerund() {
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Gerund), "tuti".to_string());
+        assert_eq!(conjugate_verbs("kiiN",VerbTypes::II3, VerbConjugation::Gerund), "kiQci".to_string());
+        assert_eq!(conjugate_verbs("niiN",VerbTypes::II4, VerbConjugation::Gerund), "nici".to_string());
+    }
 }
+
+/*
+Ia1 (tuin,take),(wakain,understand)
+Ia2 warain, laugh
+Ib1 chiin, don (clothes)
+Ib2 chiin, cut it
+Ic1 yumariin, can read
+Ic2 iriin, put in
+IIa1 'wiijun, swim
+IIa2 kanjun, don (hats)
+IIa3 kunjun, tie up/down
+IIb1 kachun, write
+IIb2 tachun, stand up
+IIc nasun, give birth to
+IId yubun, call
+IIe yumun, read
+IIf shinun, die
+III wun, be (animate)
+IV
+menseen, come, go, be (exalting)
+chuun, come
+sun, do
+an, be (inanimate)
+yan, be (copula)
+'yun, say
+umuin, think
+ichun, go
+*/
+
+
+/* 
+晴れる はりいん　はりゆん II2
+照る　てぃいん　てぃゆん　II2
+鳴る ないん　なゆん　II2
+渇く かーきいん　かーきゆん　II2
+
+落ちる うてぃいん うてぃゆん　II2
+
+死ぬ　しぬん
+*/
 
 /*
 biraN
@@ -609,183 +542,12 @@ bitakutu
 bitaga
 bitii
 */
-/*
-ぐゑ 	ぐゎ gwe gwa
-くゑ 	くゎ kwe kwa
-ゑ we
-
-ち 	ちぇ 	ちゃ 	ちょ 	ちゅ
-*/
 
 
 /*
-morae
-あいうえお
-かきくけこ
-がぎぐげご
-
-さ
-すぃ
-す
-せ
-そ
-
-しゃ
-し
-しゅ
-しぇ
-しょ
-
-ざ
-ずぃ
-ず
-ぜ
-ぞ
-
-じゃ
-じ
-じゅ
-じぇ
-じょ
-
-た
-てぃ
-とぅ
-て
-と
-
-だ
-でぃ
-どぅ
-で
-ど
-
-つぁ
-つぃ
-つ
-つぇ
-つぉ
-
-ちゃ
-ち
-ちゅ
-ちぇ
-ちょ
-
-な
-に
-ぬ
-ね
-の
-
-は
-ひ
-
-へ
-ほ
-
-ふぁ
-ふぃ
-ふ
-ふぇ
-ふぉ
-
-ば
-び
-ぶ
-べ
-ぼ
-
-ぱ
-ぴ
-ぷ
-ぺ
-ぽ
-
-ま
-み
-む
-め
-も
-
-ら
-り
-る
-れ
-ろ
-
-や
-いぃ
-ゆ
-えぇ
-よ
-
-っや
-っゆ
-っよ
-
-きゃ
-きゅ
-きょ
-
-ぎゃ
-ぎゅ
-ぎょ
-
-
-わ
-ゐ
-をぅ
-ゑ
-を
-
-くぃ
-くぇ
-くぉ
-
-ぐぃ
-ぐぇ
-ぐぉ
-
-ん
-っん
-
-ー
-っ
-*/
-
-
-/*
-晴れる
-（自動詞） =raN, =ti 
-はりゆん　はりいん
-はりやびーん
-はりやびらん
-はりやびーみ
-はりやびーが
-はりやびたん
-はりやびらんたん
-はりやびてぃー
-はりやびたが
-
-照る
-（自動詞） =raN、=ti 
-てぃゆん　てぃいん
-てぃやびーん
-てぃやびらん
-てぃやびーみ
-てぃやびーが
-
-鳴る
-（自動詞） =raN、=ti 
-なゆん、ないびーん
 
 ある
 あん、あいびーん
-
-渇く
-（自動詞） =raN、=ti 
-かーきゆん、かーきやびーん
 
 たくさんある
 まんどーん、まんどーいびーん
@@ -968,4 +730,167 @@ morae
 （自動詞） =kaN、 =ci 
 なちゅん、？なちゃびーん
 
+
+IV
+めんせえん to go, to come, to be
+ちゅうん to come　来ゅーん　
+むっちちゅん　持っち来ゅーん
+すん to do
+あん be inanimate
+やん　be copula
+っゆん　言う
+うむいん 思う
+いちゅん　行く
 */
+
+
+/*
+ます形　　ビーン形
+ビーン 自動詩文　他動詩文
+ビラン　否定
+ビーミ　肯否質問文
+ビーガ　疑問
+ビタン　過去形
+ビランタン　否定　過去
+ビティー　肯否　過去
+ビタガ 疑問　過去
+ */
+
+// 辞書形 = 派生語幹 + うん/いん/ん = 非過去
+
+    // 未然形
+    // 基本語幹+a
+    // N（否定） NonPastNegative
+    // riiN（可能・受身） Passive
+    // suN(使役) Causative
+    // a・wa(仮定条件)
+
+    // 条件形I
+    // 基本語幹+ee
+    // 単独で条件を表す。未然形を使った仮定条件と違って既定条件を表し、文脈によって「〜なら」とも「〜ので」とも訳せる
+
+    // 命令形1
+    // 基本語幹+i。
+    // 単独で命令を表す。ImperativeI
+
+    // 命令形2
+    // 基本語幹+ee。
+    // 同じく命令を表す。ImperativeII
+
+    // 連体形1
+    // 基本語幹+u。
+    // na(な。禁止) ImperativeNegative
+    // ka(まで) Until
+    // kazirii(まで・かぎり)などが付く。
+
+    // 連用形
+    // 連用語幹+i。
+    // ga(〜しに)
+    // ciroo(〜しそう) Volitional
+    // uusuN(〜できる) Potential
+    // busaN(〜したい)などが付く。 Desire
+
+    // 丁寧形
+    // 連用語幹+(j)abiiN/ibiiN。第1種動詞では連用語幹+abiiN、第2種動詞では頭語幹+jabiiN、第3種動詞では頭語幹+jabiiNまたは頭語幹+ibiiNとなる[17]。日本語の「〜ます」にあたる。
+
+    // 終止形(現在形)
+    // 派生語幹+uN/iN/N。第1種動詞にはuNが、第2種動詞にはiNが、第3種動詞にはNが付く[17]。派生語幹から成る活用形は連体形以下も同様にu/i/○の交替がある。なお、第2種動詞の終止形語尾をiNではなくjuNとしている辞書等もある。iNはjuNの慣用形だが[18]、20世紀後半にはjuNは高齢層で稀に聞かれるだけとなり、ほぼiNに統一された[17]。かつての首里方言ではjuN・iN並存だった。
+
+    // 終止形(現在形)は、未来や、特定の時間に限定されない行為を表すほかに、現在のことを表す点が日本語と異なる。すなわち、日本語で「新聞を読んでいる」と言うところを、現在形でsiNbuN junuNと言う[19]。沖縄方言の現在形は元々「をり」を含んでいる形であり、西日本方言で進行アスペクトを表す「連用形＋よる(をり)」との関係が考えられる。
+    // 連体形2
+    // 派生語幹+uru/iru/ru。後に名詞が続くほか、baa(〜時)、hazi(〜はず)などの語が付く。また、強調の助詞ru(ぞ)に呼応して係り結びをつくる。
+
+    // 未然形2(ga係り結び形)
+    // 派生語幹+ura/ira/ra。疑問の助詞ga(か)に呼応して係り結びをつくる。
+
+    // 条件形2
+    // 派生語幹+uraa/iraa/raa。「〜なら」という条件を表す。
+
+    // 準体形
+    // 派生語幹+u/i/○。si（の）、siga（〜のだが）、sa（よ）、gutu（理由）、ga（疑問）、mi・i（たずね）などが付く。
+
+    // 過去進行形
+    // 派生語幹+utaN/itaN/taN。過去における動作の進行を表す。「〜していた」。
+
+    // 過去進行中止形
+    // 派生語幹+uti/iti/ti。疑問の助詞iが付いて、過去における動作進行に対する疑問を表す。「〜していたか」。
+
+    // 過去進行推量形
+    // 派生語幹+uteeN/iteeN/teeN。過去における確実な動作進行の推量を表す。「〜していただろう」。
+
+    // 接続形
+    // 音便語幹+i。「〜して」の意味を表す。
+
+    // 過去形
+    // 音便語幹+aN。過去を表す。「〜した」。
+
+    // 完了形(確証過去形)
+    // 音便語幹+eeN。ある動作・行為の結果が現在残っていて、過去に確かにそれが行なわれたことを表す[15][20]。「(今までに)きっと〜している」「〜したに違いない」「〜してある」などと訳される[19]。
+
+    // 継続形
+    // 音便語幹+ooN。動作の結果あるいは継続進行を表す[20]。「〜している」などと訳される。
+
+/*
+
+かちゃびーん　書きます
+ちちゃびーん　聞きます
+さちゃびーん　咲きます
+っあっちゃびーん　歩きます
+
+くーじゃびーん　漕ぎます　（こぐ）
+っゐーじゃびーん　泳ぎます
+っおーじゃびーん　扇ぎます　（あおぐ）
+
+っうちゃびーん　立ちます
+うちゃびーん　打つ
+かちゃびーん　勝つ
+
+すらちゃびーん 育つ
+たむちゃびーん　保つ　たもつ
+くちゃびーん　朽ちる　くちる
+
+くるさびーん　殺します
+めーさびーん　燃やす
+はんさびーん　外す　はずす
+
+さびーん　します
+すぃっくゎさびーん　敷きます
+ひっこーさびーん　比較します
+
+ゆばびーん　呼びます
+とぅばびーん　飛びます
+むすばびーん　結びます
+
+ゆまびーん　読む
+ぬまびーん　飲む
+っあまびーん　編む
+
+にんじゃびーん　眠ります
+かんじゃびーん　被る
+っあんじゃびーん　あぶる
+
+んんじゃびーん　見る
+くんじゃびーん　括る　くくる
+
+うきやびーん　起きます
+かまびーん　食べます
+ゆまびーん　読みます
+さびーん　します
+しなびーん　死にます
+とぅばびーん　飛びます
+はなさびーん　話します
+かちゃびーん　書きます
+たちゃびーん　立ちます
+っゐーじゃびーん　泳ぎます
+にんじゃびーん　寝ます
+とぅいびーん　　とります
+
+いちゃびーん　行きます
+ちゃーびーん　来ます
+いやびーん　言います
+
+うきやびらん　起きません
+かまびらん　食べません
+ゆまびらん　読みません
+さびらん　しません
+ */
