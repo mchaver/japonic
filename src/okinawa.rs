@@ -1,6 +1,120 @@
+use util;
+
 pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
     ("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
 ];
+
+pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
+    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っ","xtsu"),("っ","xtu"),("っや","qya"),("っゆ","qyu"),("っよ","qyo"),("っわ","qwa"),("っゐ","qwi"),("っゑ","qwe"),("っを","qwo"),("っん","qnn"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","hu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","nn")
+];
+
+pub fn romaji_to_hiragana(romaji: &str) -> String {
+    let romaji_len = romaji.len();
+
+    let mut romaji_index = 0;
+    let mut window = 1; // 1 to 3
+    let mut hiragana = "".to_string();
+
+    // convert 1 to 3 ascii chars to a single hirgana
+    // i is starting point, window is length to be looked up
+    while romaji_index < romaji_len && romaji_index + window < romaji_len + 1 {
+        let romaji_sub = &romaji[romaji_index .. romaji_index + window];
+
+        // check for gemminate consonant, if it exists, consume the char
+        // add a "っ" and skip the lookup
+        if window == 1 && romaji_index + 1 < romaji_len && util::is_consonant(romaji_sub) {
+            let romaji_peek_ahead = &romaji[romaji_index + 1 .. romaji_index + 2];
+
+            if romaji_sub == romaji_peek_ahead {
+                hiragana = format!("{}{}", hiragana, "っ");
+                romaji_index += 1;
+                window = 1;
+                continue;
+            }
+        }
+        
+        match util::lookup(romaji_sub, ROMAJI_TO_HIRAGANA_TABLE) {
+            Some(hiragana_index) => {
+                let single_hiragana = ROMAJI_TO_HIRAGANA_TABLE[hiragana_index].1.to_string();
+                hiragana = format!("{}{}", hiragana, single_hiragana);
+                romaji_index += window;
+                window = 1;
+            },
+            None => {
+                // romaji_sub was not found in the table, increase the window size if it was
+                // not found. If the window is too large then move the index over and reset
+                // the window size to 1
+                if window < 3 {
+                    window += 1;
+                } else {
+                    romaji_index += 1;
+                    window = 1;
+                }
+            },
+        }
+    }
+    
+    hiragana.to_string()
+}
+
+pub fn hiragana_to_romaji(hiragana: &str) -> String {
+    let hiragana_chars = hiragana.chars();
+    let hiragana_len = hiragana_chars.count();
+
+    let mut hiragana_index = 0;
+    let mut window = 
+        if hiragana_len > 1 {
+            2
+        } else {
+            1
+        };
+    let mut romaji = "".to_string();
+
+    while hiragana_index < hiragana_len && hiragana_index + window < hiragana_len + 1 {
+        let hiragana_sub_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
+        let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
+        let hiragana_sub: &str = &hiragana_sub_string[..];
+
+        match util::lookup(hiragana_sub, HIRAGANA_TO_ROMAJI_TABLE) {
+            Some(romaji_index) => {
+                let single_romaji = HIRAGANA_TO_ROMAJI_TABLE[romaji_index].1.to_string();
+                romaji = format!("{}{}", romaji, single_romaji);
+                hiragana_index += window;
+                window =
+                    if hiragana_len - hiragana_index > 1 {
+                        2
+                    } else {
+                        1
+                    };
+            },
+            None => {
+                // hiragana_sub was not found in the table, increase the window size if it was
+                // not found. If the window is too large then move the index over and reset
+                // the window size relative to the length of string.
+                if window > 1 {
+                    window -= 1;
+                } else {
+                    hiragana_index += 1;
+                    window =
+                        if hiragana_len - hiragana_index > 1 {
+                            2
+                        } else {
+                            1
+                        };
+                }
+            },
+        }
+    }
+
+    romaji.to_string()
+}
+/*
+import Text.Show.Unicode (uprint)
+import Data.List (sort)
+import Data.Tuple (swap)
+uprint $ sort $ swap <$> x
+*/
+
 
 pub enum VerbType {
           // headword ending, nonpast negative, gerund
@@ -102,13 +216,14 @@ pub enum VerbStem {
 }
 
 pub enum VerbConjugation {
-    NonPast,         // in/un/n does 辞書形
+    NonPast,         // in/un/n 辞書形
     NonPastNegative, // ~an 否定形
     Past,            // ~an
     PastNegative,    // ~antan
 
     // ClauseEnding,    // i, does/ and 連用形
     // Connective,      // (y)a
+    
 
     YesNoInterrogative, // ~mi
     WhInterrogative, // ~ga
@@ -117,7 +232,7 @@ pub enum VerbConjugation {
     Potential, // able to ~juusun
     Desiderative, // desire, want to
     Imperative,
-    ImperativeNegative, // prohibitive
+    Prohibitive, // prohibitive
 
     Volitional,
     Causative, // ~sun
@@ -146,14 +261,19 @@ pub fn conjugate_iv_verbs(verb: &str, conjugation: VerbConjugation) -> &str {
             VerbConjugation::PastNegative => "kuuntan",
             VerbConjugation::Past => "chan",
             VerbConjugation::NonPastPolite => "chaabiin",
+            VerbConjugation::Honorific => "menseen",
+            VerbConjugation::Potential => "chiyuusun",
+            VerbConjugation::Desiderative => "chibusan",
+            VerbConjugation::Volitional => "kuu",
             VerbConjugation::YesNoInterrogative => "chuumi",
             VerbConjugation::WhInterrogative => "chuuga",
             VerbConjugation::Imperative => "kuu",
-            VerbConjugation::ImperativeNegative => "kuuna",
+            VerbConjugation::Prohibitive => "kuuna",
             VerbConjugation::Causative => "kuurasun",
             VerbConjugation::AttributiveNonPast => "chuuru",
             VerbConjugation::AttributivePast => "charu",
             VerbConjugation::Progressive => "choon",
+            VerbConjugation::Continuative => "chchi",
             _ => ""
         }
     } else if verb == "yan" { // to be (copula)
@@ -192,7 +312,7 @@ pub fn conjugate_iv_verbs(verb: &str, conjugation: VerbConjugation) -> &str {
             VerbConjugation::YesNoInterrogative => "qyurumi",
             VerbConjugation::WhInterrogative => "qyuruga",
             VerbConjugation::Imperative => "ii",
-            VerbConjugation::ImperativeNegative => "qyuna",
+            VerbConjugation::Prohibitive => "qyuna",
             VerbConjugation::Causative => "qyashimiyun", // qyashimiin
             VerbConjugation::AttributiveNonPast => "qyuru",
             VerbConjugation::AttributivePast => "icharu",
@@ -220,7 +340,7 @@ pub fn conjugate_iv_verbs(verb: &str, conjugation: VerbConjugation) -> &str {
             VerbConjugation::YesNoInterrogative => "ichumi",
             VerbConjugation::WhInterrogative => "ichuga",
             VerbConjugation::Imperative => "iki",
-            VerbConjugation::ImperativeNegative => "ikuna",
+            VerbConjugation::Prohibitive => "ikuna",
             VerbConjugation::Causative => "ikasun",
             VerbConjugation::AttributiveNonPast => "ichuru",
             VerbConjugation::AttributivePast => "'njaru",
@@ -277,7 +397,7 @@ pub fn conjugate_verbs(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) 
         VerbConjugation::Desiderative => format!("{}{}", get_verb_stem(verb,VerbStem::Connective,vt), "ibusaN"),
 
         VerbConjugation::Imperative => format!("{}{}", get_verb_stem(verb,VerbStem::Base,vt), "ee"),
-        VerbConjugation::ImperativeNegative => match vt {
+        VerbConjugation::Prohibitive => match vt {
             VerbTypes::II1 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt).to_owned(), "nna"),
             VerbTypes::II2 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
             VerbTypes::II3 => replace_last(&get_verb_stem(verb,VerbStem::Base,vt), "nna"),
@@ -422,7 +542,7 @@ mod tests {
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Desiderative), "kacibusaN".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Honorific), "kacimiseeN".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Imperative), "kakee".to_string());
-        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::ImperativeNegative), "kakuna".to_string());
+        assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::Prohibitive), "kakuna".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::YesNoInterrogative), "kacumi".to_string());
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::WhInterrogative), "kacuga".to_string());
         
@@ -432,7 +552,7 @@ mod tests {
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::NonPastPolite), "mucabiiN".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Desiderative), "mucibusaN".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Imperative), "mutee".to_string());
-        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::ImperativeNegative), "mutuna".to_string());
+        assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::Prohibitive), "mutuna".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::YesNoInterrogative), "mucumi".to_string());
         assert_eq!(conjugate_verbs("mucuN",VerbTypes::I3, VerbConjugation::WhInterrogative), "mucuga".to_string());
         
@@ -443,7 +563,7 @@ mod tests {
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Desiderative), "jumibusaN".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Honorific), "jumimiseeN".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Imperative), "jumee".to_string());
-        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::ImperativeNegative), "jumuna".to_string());
+        assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::Prohibitive), "jumuna".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::YesNoInterrogative), "jumumi".to_string());
         assert_eq!(conjugate_verbs("jumuN",VerbTypes::I8, VerbConjugation::WhInterrogative), "jumuga".to_string());
         
@@ -453,20 +573,92 @@ mod tests {
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Desiderative), "tuibusaN".to_string()); // tuibusaN
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Honorific), "tumiseeN".to_string()); // tuibusaN
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Imperative), "turee".to_string()); // tuibusaN
-        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::ImperativeNegative), "tunna".to_string()); // tuibusaN
+        assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Prohibitive), "tunna".to_string()); // tuibusaN
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::YesNoInterrogative), "tuimi".to_string());
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::WhInterrogative), "tuiga".to_string());
     }
 
     #[test]
     fn test_gerund() {
+        assert_eq!(conjugate_verbs("kacuN",    VerbTypes::I1 , VerbConjugation::Gerund), "kaci".to_string());
+        assert_eq!(conjugate_verbs("kuuzuN",   VerbTypes::I2 , VerbConjugation::Gerund), "kuuzi".to_string());
+        assert_eq!(conjugate_verbs("tacuN",    VerbTypes::I3 , VerbConjugation::Gerund), "taQci".to_string());
+        assert_eq!(conjugate_verbs("suracuN",  VerbTypes::I4 , VerbConjugation::Gerund), "suraci".to_string());
+        assert_eq!(conjugate_verbs("kurusuN",  VerbTypes::I5 , VerbConjugation::Gerund), "kuruci".to_string());
+        assert_eq!(conjugate_verbs("hiQkoosuN",VerbTypes::I6 , VerbConjugation::Gerund), "hiQkoosi".to_string());
+        assert_eq!(conjugate_verbs("jubuN",    VerbTypes::I7 , VerbConjugation::Gerund), "juri".to_string());
+        assert_eq!(conjugate_verbs("jumuN",    VerbTypes::I8 , VerbConjugation::Gerund), "juri".to_string());
+        assert_eq!(conjugate_verbs("niNzuN",   VerbTypes::I9 , VerbConjugation::Gerund), "niNti".to_string());
+        assert_eq!(conjugate_verbs("NNzuN",    VerbTypes::I10, VerbConjugation::Gerund), "NNci".to_string());
+        // assert_eq!(conjugate_verbs("NNzuN",VerbTypes::I10, VerbConjugation::Gerund), "tuti".to_string());
+        
         assert_eq!(conjugate_verbs("tuiN",VerbTypes::II2, VerbConjugation::Gerund), "tuti".to_string());
         assert_eq!(conjugate_verbs("kiiN",VerbTypes::II3, VerbConjugation::Gerund), "kiQci".to_string());
         assert_eq!(conjugate_verbs("niiN",VerbTypes::II4, VerbConjugation::Gerund), "nici".to_string());
     }
+
+    #[test]
+    fn test_hiragana_to_romaji() {
+        // I1
+        assert_eq!(hiragana_to_romaji("かちゅん"), "kachunn".to_string());
+        assert_eq!(hiragana_to_romaji("ちちゅん"), "chichunn".to_string());
+        assert_eq!(hiragana_to_romaji("さちゅん"), "sachunn".to_string());
+        assert_eq!(hiragana_to_romaji("あっちゅん"), "axtuchunn".to_string());
+        // I2
+        assert_eq!(hiragana_to_romaji("くうじゅん"), "kuujunn".to_string());
+        assert_eq!(hiragana_to_romaji("っゐいじゅん"), "qwiijunn".to_string());
+        assert_eq!(hiragana_to_romaji("おおじゅん"), "oojunn".to_string());
+        // I3
+        assert_eq!(hiragana_to_romaji("たちゅん"), "tachunn".to_string());
+        assert_eq!(hiragana_to_romaji("うちゅん"), "uchunn".to_string());
+        assert_eq!(hiragana_to_romaji("かちゅん"), "kachunn".to_string());
+        // I4
+        assert_eq!(hiragana_to_romaji("すらちゅん"), "surachunn".to_string());
+        assert_eq!(hiragana_to_romaji("たむちゅん"), "tamuchunn".to_string());
+        assert_eq!(hiragana_to_romaji("くちゅん"), "kuchunn".to_string());
+        // I5
+        assert_eq!(hiragana_to_romaji("くるすん"), "kurusunn".to_string());
+        assert_eq!(hiragana_to_romaji("めえすん"), "meesunn".to_string());
+        assert_eq!(hiragana_to_romaji("はんすん"), "hannsunn".to_string());
+        // I6
+        assert_eq!(hiragana_to_romaji("すん"), "sunn".to_string());
+        assert_eq!(hiragana_to_romaji("すぃっくゎすん"), "sixtukwasunn".to_string());
+        assert_eq!(hiragana_to_romaji("ひっこおすん"), "hixtukoosunn".to_string());
+        // I7
+        assert_eq!(hiragana_to_romaji("ゆぶん"), "yubunn".to_string());
+        assert_eq!(hiragana_to_romaji("とぅぶん"), "tubunn".to_string());
+        assert_eq!(hiragana_to_romaji("むすぶん"), "musubunn".to_string());
+        // I8
+        assert_eq!(hiragana_to_romaji("ゆむん"), "yumunn".to_string());
+        assert_eq!(hiragana_to_romaji("ぬむん"), "numunn".to_string());
+        assert_eq!(hiragana_to_romaji("あむん"), "amunn".to_string());
+        // I9
+        assert_eq!(hiragana_to_romaji("にんじゅん"), "ninnjunn".to_string());
+        assert_eq!(hiragana_to_romaji("かんじゅん"), "kannjunn".to_string());
+        assert_eq!(hiragana_to_romaji("あんじゅん"), "annjunn".to_string());
+        // I10
+        assert_eq!(hiragana_to_romaji("んんじゅん"), "nnnnjunn".to_string());
+        assert_eq!(hiragana_to_romaji("くんじゅん"), "kunnjunn".to_string());
+        // I11
+        assert_eq!(hiragana_to_romaji("しぬん"), "shinunn".to_string());
+
+    }
 }
 
 /*
+書く 	ka 	k 	c 	c 	c 	kacuN(書く)、cicuN(聞く)、sacuN(咲く)、ʔaQcuN(歩く)
+漕ぐ 	kuu 	g 	z 	z 	z 	kuuzuN(漕ぐ)、ʔwiizuN(泳ぐ)、ʔoozuN(扇ぐ)
+立つ 	ta 	t 	c 	c 	Qc 	tacuN(立つ)、ʔucuN(打つ)、kacuN(勝つ)
+育つ 	sura 	t 	c 	c 	c 	suracuN(育つ)、tamucuN(保つ)、kucuN(朽ちる)
+殺す 	kuru 	s 	s 	s 	c 	kurusuN(殺す)、meesuN(燃やす)、haNsuN(外す)
+為る 	‐ 	s 	s 	s 	s 	suN(為る)、siQkwasuN(敷く)、hiQkoosuN(比較する)
+呼ぶ 	ju 	b 	b 	b 	r/d 	jubuN(呼ぶ)、tubuN(飛ぶ)、musubuN(結ぶ)
+読む 	ju 	m 	m 	m 	r/d 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
+眠る 	niN 	r 	z 	z 	t 	niNzuN(眠る)、kaNzuN(被る)、ʔaNzuN(あぶる)
+見る 	NN 	r 	z 	z 	c 	NNzuN(見る)、kuNzuN(括る)
+死ぬ 	shi     n       n       n       j       shinuN 死ぬん
+
+
 Ia1 (tuin,take),(wakain,understand)
 Ia2 warain, laugh
 Ib1 chiin, don (clothes)
@@ -779,7 +971,7 @@ IV
 
     // 連体形1
     // 基本語幹+u。
-    // na(な。禁止) ImperativeNegative
+    // na(な。禁止) Prohibitive
     // ka(まで) Until
     // kazirii(まで・かぎり)などが付く。
 
