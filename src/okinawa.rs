@@ -5,7 +5,7 @@ pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
 ];
 
 pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
-    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っ","xtsu"),("っ","xtu"),("っや","qya"),("っゆ","qyu"),("っよ","qyo"),("っわ","qwa"),("っゐ","qwi"),("っゑ","qwe"),("っを","qwo"),("っん","qnn"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","hu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","nn")
+    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っ","xtsu"),("っ","xtu"),("っや","qya"),("っゆ","qyu"),("っよ","qyo"),("っわ","qwa"),("っゐ","qwi"),("っゑ","qwe"),("っを","qwo"),("っん","qnn"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","nn")
 ];
 
 pub fn romaji_to_hiragana(romaji: &str) -> String {
@@ -57,6 +57,11 @@ pub fn romaji_to_hiragana(romaji: &str) -> String {
     hiragana.to_string()
 }
 
+/*
+fn lookup_romaji(hiragana: &str) -> String {
+
+}
+*/
 pub fn hiragana_to_romaji(hiragana: &str) -> String {
     let hiragana_chars = hiragana.chars();
     let hiragana_len = hiragana_chars.count();
@@ -74,6 +79,45 @@ pub fn hiragana_to_romaji(hiragana: &str) -> String {
         let hiragana_sub_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
         let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
         let hiragana_sub: &str = &hiragana_sub_string[..];
+
+        // look back
+        if window == 2 {
+            if hiragana_sub_vec[1] == 'ー' {
+                match util::lookup(&hiragana_sub_vec[0].to_string(), util::HIRAGANA_TO_VOWEL_TABLE) {
+                    Some(vowel_index) => {
+                        match util::lookup(&hiragana_sub_vec[0].to_string(), HIRAGANA_TO_ROMAJI_TABLE) {
+                            Some(romaji_index) => {
+                                let prev = HIRAGANA_TO_ROMAJI_TABLE[romaji_index].1.to_string();
+                                let hiragana_vowel = util::HIRAGANA_TO_VOWEL_TABLE[vowel_index].1.to_string();
+                                match util::lookup(&hiragana_vowel, HIRAGANA_TO_ROMAJI_TABLE) {
+                                    Some(romaji_vowel_index) => {
+                                        let romaji_vowel = HIRAGANA_TO_ROMAJI_TABLE[romaji_vowel_index].1.to_string();
+                                        romaji = format!("{}{}{}", romaji, prev, romaji_vowel);
+                                        hiragana_index += window;
+                                        window =
+                                            if hiragana_len - hiragana_index > 1 {
+                                                2
+                                            } else {
+                                                1
+                                            };
+                                        continue;
+                                    },
+                                    None => {
+                                        ()
+                                    }
+                                }                                
+                            },
+                            None => {
+                                ()
+                            }
+                        }
+                    },
+                    None => {
+                        ()
+                    }
+                }
+            }
+        }
 
         match util::lookup(hiragana_sub, HIRAGANA_TO_ROMAJI_TABLE) {
             Some(romaji_index) => {
@@ -605,9 +649,9 @@ mod tests {
         assert_eq!(hiragana_to_romaji("さちゅん"), "sachunn".to_string());
         assert_eq!(hiragana_to_romaji("あっちゅん"), "axtuchunn".to_string());
         // I2
-        assert_eq!(hiragana_to_romaji("くうじゅん"), "kuujunn".to_string());
+        assert_eq!(hiragana_to_romaji("くーじゅん"), "kuujunn".to_string());
         assert_eq!(hiragana_to_romaji("っゐいじゅん"), "qwiijunn".to_string());
-        assert_eq!(hiragana_to_romaji("おおじゅん"), "oojunn".to_string());
+        assert_eq!(hiragana_to_romaji("おーじゅん"), "oojunn".to_string());
         // I3
         assert_eq!(hiragana_to_romaji("たちゅん"), "tachunn".to_string());
         assert_eq!(hiragana_to_romaji("うちゅん"), "uchunn".to_string());
@@ -618,7 +662,7 @@ mod tests {
         assert_eq!(hiragana_to_romaji("くちゅん"), "kuchunn".to_string());
         // I5
         assert_eq!(hiragana_to_romaji("くるすん"), "kurusunn".to_string());
-        assert_eq!(hiragana_to_romaji("めえすん"), "meesunn".to_string());
+        assert_eq!(hiragana_to_romaji("めーすん"), "meesunn".to_string());
         assert_eq!(hiragana_to_romaji("はんすん"), "hannsunn".to_string());
         // I6
         assert_eq!(hiragana_to_romaji("すん"), "sunn".to_string());
@@ -642,22 +686,70 @@ mod tests {
         // I11
         assert_eq!(hiragana_to_romaji("しぬん"), "shinunn".to_string());
 
+        // II1
+        assert_eq!(hiragana_to_romaji("とぅいん"), "tuinn".to_string());            
+        // II2
+        assert_eq!(hiragana_to_romaji("かいん"), "kainn".to_string());
+        assert_eq!(hiragana_to_romaji("ぬぶいん"), "nubuinn".to_string());
+        assert_eq!(hiragana_to_romaji("あらいん"), "arainn".to_string());
+        // II3
+        assert_eq!(hiragana_to_romaji("きいん"), "kiinn".to_string());
+        assert_eq!(hiragana_to_romaji("いいん"), "iinn".to_string());
+        assert_eq!(hiragana_to_romaji("ひいん"), "hiinn".to_string());
+        assert_eq!(hiragana_to_romaji("ちいん"), "chiinn".to_string());
+        // II4
+        assert_eq!(hiragana_to_romaji("にいん"), "niinn".to_string());
+        assert_eq!(hiragana_to_romaji("ちいん"), "chiinn".to_string());
+        assert_eq!(hiragana_to_romaji("いいん"), "iinn".to_string());
+        assert_eq!(hiragana_to_romaji("いいん"), "iinn".to_string());
+
+        // III
+        assert_eq!(hiragana_to_romaji("あん"), "ann".to_string());
+        assert_eq!(hiragana_to_romaji("うん"), "unn".to_string());
+        assert_eq!(hiragana_to_romaji("やん"), "yann".to_string());
+
+        // simple sentences
+        assert_eq!(hiragana_to_romaji("あみぬふいん"), "aminufuinn".to_string());
+        assert_eq!(hiragana_to_romaji("からたあらいん"), "karataarainn".to_string());
+        assert_eq!(hiragana_to_romaji("ちらあらいん"), "chiraarainn".to_string());
+
+        // incorrect
+        assert_eq!(hiragana_to_romaji("ちゃんぷるーぬかみぶさん"), "channpuruunukamibusann".to_string());
     }
 }
 
 /*
-書く 	ka 	k 	c 	c 	c 	kacuN(書く)、cicuN(聞く)、sacuN(咲く)、ʔaQcuN(歩く)
-漕ぐ 	kuu 	g 	z 	z 	z 	kuuzuN(漕ぐ)、ʔwiizuN(泳ぐ)、ʔoozuN(扇ぐ)
-立つ 	ta 	t 	c 	c 	Qc 	tacuN(立つ)、ʔucuN(打つ)、kacuN(勝つ)
-育つ 	sura 	t 	c 	c 	c 	suracuN(育つ)、tamucuN(保つ)、kucuN(朽ちる)
-殺す 	kuru 	s 	s 	s 	c 	kurusuN(殺す)、meesuN(燃やす)、haNsuN(外す)
-為る 	‐ 	s 	s 	s 	s 	suN(為る)、siQkwasuN(敷く)、hiQkoosuN(比較する)
-呼ぶ 	ju 	b 	b 	b 	r/d 	jubuN(呼ぶ)、tubuN(飛ぶ)、musubuN(結ぶ)
-読む 	ju 	m 	m 	m 	r/d 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
-眠る 	niN 	r 	z 	z 	t 	niNzuN(眠る)、kaNzuN(被る)、ʔaNzuN(あぶる)
-見る 	NN 	r 	z 	z 	c 	NNzuN(見る)、kuNzuN(括る)
-死ぬ 	shi     n       n       n       j       shinuN 死ぬん
+ あみぬふいん【雨ぬ降いん】
+おーいん to fight
+あらいん【洗いん】
+ ちらあらいん【面洗いん】
+  からたあらいん【体洗いん】
+かむん【咬むん・噛むん】 : kamun | define meaning
 
+ｏｏぬかみぶさん
+~ nu kami busan
+"I want to eat ~"
+
+むぬかみーが。【物咬みーが。】
+munu kamiiga.
+"How about something to eat?"
+
+こーいん【買ーいん】 : kooin | define meaning
+
+くゎいん・くぁいん : kwain | define meaning
+eat
+
+もーいん【舞いん】
+ もーやー【舞やー】 mooyaa "dancer".
+
+那覇方言の第2種動詞の語幹
+取る 	tu 	r 	○/j 	○ 	Qt 	tuiN(取る)
+刈る 	ka 	r 	○/j 	○ 	t 	kaiN(刈る)、nubuiN(登る)、ʔaraiN(洗う)
+蹴る 	ki 	r 	○/j 	○ 	Qc 	kiiN(蹴る)、ʔiiN(入る)、hiiN(放る)、ciiN(切る)
+煮る 	ni 	r 	○/j 	○ 	c/(Qt) 	niiN(煮る)、ciiN(着る)、ʔiiN(言う)、iiN(座る)
+
+那覇方言の第3種動詞の語幹
+有る 	ʔa 	r 	○/j/i 	○ 	t 	ʔaN(有る)、uN(居る)、jaN(である)
 
 Ia1 (tuin,take),(wakain,understand)
 Ia2 warain, laugh
