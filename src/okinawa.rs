@@ -5,7 +5,7 @@ pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
 ];
 
 pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
-    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っや","'ya"),("っゆ","'yu"),("っよ","'yo"),("っわ","'wa"),("っゐ","'wi"),("っゑ","'we"),("っを","'wo"),("っん","'nn"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","nn")
+    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っや","'ya"),("っゆ","'yu"),("っよ","'yo"),("っわ","'wa"),("っゐ","'wi"),("っゑ","'we"),("っを","'wo"),("っん","'n"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","n")
 ];
 
 // if ん and next is ん or あいうえお　then n'
@@ -78,31 +78,54 @@ pub fn hiragana_to_romaji(hiragana: &str) -> String {
         };
     let mut romaji = "".to_string();
 
-    
-
     while hiragana_index < hiragana_len && hiragana_index + window < hiragana_len + 1 {
         let hiragana_sub_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
         let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
         let hiragana_sub: &str = &hiragana_sub_string[..];
 
-        // check for gemminate consonant, if it exists, consume the char
-        // add the geminnated consonant and skip the lookup
-        if window == 1 && hiragana_index + 1 < hiragana_len && hiragana_sub == "っ" {
+        // look ahead
+        if window == 1 && hiragana_index + 1 < hiragana_len {
             let hiragana_peek_ahead_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index + 1 .. hiragana_index + 2];
             let hiragana_peek_ahead: String = hiragana_peek_ahead_vec.into_iter().collect();
-            let geminate = match util::lookup(&hiragana_peek_ahead, util::HIRAGANA_TO_GEMINATE_TABLE) {
-                Some(geminate_index) => util::HIRAGANA_TO_GEMINATE_TABLE[geminate_index].1.to_string(),
-                None => "".to_string()
-            };
-            romaji = format!("{}{}", romaji, geminate);
-            hiragana_index += window;
-            window =
-                if hiragana_len - hiragana_index > 1 {
-                    2
+
+            // "ん" as "n" or "m"
+            if hiragana_sub == "ん" {
+                let nasal = if util::hiragana_is_bilabial(&hiragana_peek_ahead) {
+                    "m".to_string()
+                } else if util::hiragana_merges_n(&hiragana_peek_ahead) {
+                    "n'".to_string()
                 } else {
-                    1
+                    "n".to_string()
                 };
-            continue;
+                
+                romaji = format!("{}{}", romaji, nasal);
+                hiragana_index += window;
+                window =
+                    if hiragana_len - hiragana_index > 1 {
+                        2
+                    } else {
+                        1
+                    };
+                continue;
+            }
+
+            // check for gemminate consonant, if it exists, consume the char
+            // add the geminnated consonant and skip the lookup
+            if hiragana_sub == "っ" {
+                let geminate = match util::lookup(&hiragana_peek_ahead, util::HIRAGANA_TO_GEMINATE_TABLE) {
+                    Some(geminate_index) => util::HIRAGANA_TO_GEMINATE_TABLE[geminate_index].1.to_string(),
+                    None => "".to_string()
+                };
+                romaji = format!("{}{}", romaji, geminate);
+                hiragana_index += window;
+                window =
+                    if hiragana_len - hiragana_index > 1 {
+                        2
+                    } else {
+                        1
+                    };
+                continue;
+            }
         }
 
         if window == 2 {
@@ -668,77 +691,77 @@ mod tests {
     #[test]
     fn test_hiragana_to_romaji() {
         // I1
-        assert_eq!(hiragana_to_romaji("かちゅん"), "kachunn".to_string());
-        assert_eq!(hiragana_to_romaji("ちちゅん"), "chichunn".to_string());
-        assert_eq!(hiragana_to_romaji("さちゅん"), "sachunn".to_string());
-        assert_eq!(hiragana_to_romaji("あっちゅん"), "atchunn".to_string());
+        assert_eq!(hiragana_to_romaji("かちゅん"), "kachun".to_string());
+        assert_eq!(hiragana_to_romaji("ちちゅん"), "chichun".to_string());
+        assert_eq!(hiragana_to_romaji("さちゅん"), "sachun".to_string());
+        assert_eq!(hiragana_to_romaji("あっちゅん"), "atchun".to_string());
         // I2
-        assert_eq!(hiragana_to_romaji("くーじゅん"), "kuujunn".to_string());
-        assert_eq!(hiragana_to_romaji("っゐいじゅん"), "'wiijunn".to_string());
-        assert_eq!(hiragana_to_romaji("おーじゅん"), "oojunn".to_string());
+        assert_eq!(hiragana_to_romaji("くーじゅん"), "kuujun".to_string());
+        assert_eq!(hiragana_to_romaji("っゐいじゅん"), "'wiijun".to_string());
+        assert_eq!(hiragana_to_romaji("おーじゅん"), "oojun".to_string());
         // I3
-        assert_eq!(hiragana_to_romaji("たちゅん"), "tachunn".to_string());
-        assert_eq!(hiragana_to_romaji("うちゅん"), "uchunn".to_string());
-        assert_eq!(hiragana_to_romaji("かちゅん"), "kachunn".to_string());
+        assert_eq!(hiragana_to_romaji("たちゅん"), "tachun".to_string());
+        assert_eq!(hiragana_to_romaji("うちゅん"), "uchun".to_string());
+        assert_eq!(hiragana_to_romaji("かちゅん"), "kachun".to_string());
         // I4
-        assert_eq!(hiragana_to_romaji("すらちゅん"), "surachunn".to_string());
-        assert_eq!(hiragana_to_romaji("たむちゅん"), "tamuchunn".to_string());
-        assert_eq!(hiragana_to_romaji("くちゅん"), "kuchunn".to_string());
+        assert_eq!(hiragana_to_romaji("すらちゅん"), "surachun".to_string());
+        assert_eq!(hiragana_to_romaji("たむちゅん"), "tamuchun".to_string());
+        assert_eq!(hiragana_to_romaji("くちゅん"), "kuchun".to_string());
         // I5
-        assert_eq!(hiragana_to_romaji("くるすん"), "kurusunn".to_string());
-        assert_eq!(hiragana_to_romaji("めーすん"), "meesunn".to_string());
-        assert_eq!(hiragana_to_romaji("はんすん"), "hannsunn".to_string());
+        assert_eq!(hiragana_to_romaji("くるすん"), "kurusun".to_string());
+        assert_eq!(hiragana_to_romaji("めーすん"), "meesun".to_string());
+        assert_eq!(hiragana_to_romaji("はんすん"), "hansun".to_string());
         // I6
-        assert_eq!(hiragana_to_romaji("すん"), "sunn".to_string());
-        assert_eq!(hiragana_to_romaji("すぃっくゎすん"), "sikkwasunn".to_string());
-        assert_eq!(hiragana_to_romaji("ひっこおすん"), "hikkoosunn".to_string());
+        assert_eq!(hiragana_to_romaji("すん"), "sun".to_string());
+        assert_eq!(hiragana_to_romaji("すぃっくゎすん"), "sikkwasun".to_string());
+        assert_eq!(hiragana_to_romaji("ひっこおすん"), "hikkoosun".to_string());
         // I7
-        assert_eq!(hiragana_to_romaji("ゆぶん"), "yubunn".to_string());
-        assert_eq!(hiragana_to_romaji("とぅぶん"), "tubunn".to_string());
-        assert_eq!(hiragana_to_romaji("むすぶん"), "musubunn".to_string());
+        assert_eq!(hiragana_to_romaji("ゆぶん"), "yubun".to_string());
+        assert_eq!(hiragana_to_romaji("とぅぶん"), "tubun".to_string());
+        assert_eq!(hiragana_to_romaji("むすぶん"), "musubun".to_string());
         // I8
-        assert_eq!(hiragana_to_romaji("ゆむん"), "yumunn".to_string());
-        assert_eq!(hiragana_to_romaji("ぬむん"), "numunn".to_string());
-        assert_eq!(hiragana_to_romaji("あむん"), "amunn".to_string());
+        assert_eq!(hiragana_to_romaji("ゆむん"), "yumun".to_string());
+        assert_eq!(hiragana_to_romaji("ぬむん"), "numun".to_string());
+        assert_eq!(hiragana_to_romaji("あむん"), "amun".to_string());
         // I9
-        assert_eq!(hiragana_to_romaji("にんじゅん"), "ninnjunn".to_string());
-        assert_eq!(hiragana_to_romaji("かんじゅん"), "kannjunn".to_string());
-        assert_eq!(hiragana_to_romaji("あんじゅん"), "annjunn".to_string());
+        assert_eq!(hiragana_to_romaji("にんじゅん"), "ninjun".to_string());
+        assert_eq!(hiragana_to_romaji("かんじゅん"), "kanjun".to_string());
+        assert_eq!(hiragana_to_romaji("あんじゅん"), "anjun".to_string());
         // I10
-        assert_eq!(hiragana_to_romaji("んんじゅん"), "nnnnjunn".to_string());
-        assert_eq!(hiragana_to_romaji("くんじゅん"), "kunnjunn".to_string());
+        assert_eq!(hiragana_to_romaji("んんじゅん"), "n'njun".to_string());
+        assert_eq!(hiragana_to_romaji("くんじゅん"), "kunjun".to_string());
         // I11
-        assert_eq!(hiragana_to_romaji("しぬん"), "shinunn".to_string());
+        assert_eq!(hiragana_to_romaji("しぬん"), "shinun".to_string());
 
         // II1
-        assert_eq!(hiragana_to_romaji("とぅいん"), "tuinn".to_string());            
+        assert_eq!(hiragana_to_romaji("とぅいん"), "tuin".to_string());            
         // II2
-        assert_eq!(hiragana_to_romaji("かいん"), "kainn".to_string());
-        assert_eq!(hiragana_to_romaji("ぬぶいん"), "nubuinn".to_string());
-        assert_eq!(hiragana_to_romaji("あらいん"), "arainn".to_string());
+        assert_eq!(hiragana_to_romaji("かいん"), "kain".to_string());
+        assert_eq!(hiragana_to_romaji("ぬぶいん"), "nubuin".to_string());
+        assert_eq!(hiragana_to_romaji("あらいん"), "arain".to_string());
         // II3
-        assert_eq!(hiragana_to_romaji("きいん"), "kiinn".to_string());
-        assert_eq!(hiragana_to_romaji("いいん"), "iinn".to_string());
-        assert_eq!(hiragana_to_romaji("ひいん"), "hiinn".to_string());
-        assert_eq!(hiragana_to_romaji("ちいん"), "chiinn".to_string());
+        assert_eq!(hiragana_to_romaji("きいん"), "kiin".to_string());
+        assert_eq!(hiragana_to_romaji("いいん"), "iin".to_string());
+        assert_eq!(hiragana_to_romaji("ひいん"), "hiin".to_string());
+        assert_eq!(hiragana_to_romaji("ちいん"), "chiin".to_string());
         // II4
-        assert_eq!(hiragana_to_romaji("にいん"), "niinn".to_string());
-        assert_eq!(hiragana_to_romaji("ちいん"), "chiinn".to_string());
-        assert_eq!(hiragana_to_romaji("いいん"), "iinn".to_string());
-        assert_eq!(hiragana_to_romaji("いいん"), "iinn".to_string());
+        assert_eq!(hiragana_to_romaji("にいん"), "niin".to_string());
+        assert_eq!(hiragana_to_romaji("ちいん"), "chiin".to_string());
+        assert_eq!(hiragana_to_romaji("いいん"), "iin".to_string());
+        assert_eq!(hiragana_to_romaji("いいん"), "iin".to_string());
 
         // III
-        assert_eq!(hiragana_to_romaji("あん"), "ann".to_string());
-        assert_eq!(hiragana_to_romaji("うん"), "unn".to_string());
-        assert_eq!(hiragana_to_romaji("やん"), "yann".to_string());
+        assert_eq!(hiragana_to_romaji("あん"), "an".to_string());
+        assert_eq!(hiragana_to_romaji("うん"), "un".to_string());
+        assert_eq!(hiragana_to_romaji("やん"), "yan".to_string());
 
         // simple sentences
-        assert_eq!(hiragana_to_romaji("あみぬふいん"), "aminufuinn".to_string());
-        assert_eq!(hiragana_to_romaji("からたあらいん"), "karataarainn".to_string());
-        assert_eq!(hiragana_to_romaji("ちらあらいん"), "chiraarainn".to_string());
+        assert_eq!(hiragana_to_romaji("あみぬふいん"), "aminufuin".to_string());
+        assert_eq!(hiragana_to_romaji("からたあらいん"), "karataarain".to_string());
+        assert_eq!(hiragana_to_romaji("ちらあらいん"), "chiraarain".to_string());
 
         // incorrect
-        assert_eq!(hiragana_to_romaji("ちゃんぷるーぬかみぶさん"), "channpuruunukamibusann".to_string());
+        assert_eq!(hiragana_to_romaji("ちゃんぷるーぬかみぶさん"), "champuruunukamibusan".to_string());
     }
 }
 
