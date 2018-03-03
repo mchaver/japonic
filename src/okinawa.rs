@@ -1,12 +1,15 @@
 use util;
 
 pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
-    ("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
+    ("'nn","っん"),("'wa","っわ"),("'we","っゑ"),("'wi","っゐ"),("'wo","っを"),("'ya","っや"),("'yo","っよ"),("'yu","っゆ"),("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
 ];
 
 pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
-    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っ","xtsu"),("っ","xtu"),("っや","qya"),("っゆ","qyu"),("っよ","qyo"),("っわ","qwa"),("っゐ","qwi"),("っゑ","qwe"),("っを","qwo"),("っん","qnn"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","nn")
+    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っや","'ya"),("っゆ","'yu"),("っよ","'yo"),("っわ","'wa"),("っゐ","'wi"),("っゑ","'we"),("っを","'wo"),("っん","'nn"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","nn")
 ];
+
+// if ん and next is ん or あいうえお　then n'
+// if ん and is b or p then m
 
 pub fn romaji_to_hiragana(romaji: &str) -> String {
     let romaji_len = romaji.len();
@@ -75,12 +78,33 @@ pub fn hiragana_to_romaji(hiragana: &str) -> String {
         };
     let mut romaji = "".to_string();
 
+    
+
     while hiragana_index < hiragana_len && hiragana_index + window < hiragana_len + 1 {
         let hiragana_sub_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
         let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
         let hiragana_sub: &str = &hiragana_sub_string[..];
 
-        // look back
+        // check for gemminate consonant, if it exists, consume the char
+        // add the geminnated consonant and skip the lookup
+        if window == 1 && hiragana_index + 1 < hiragana_len && hiragana_sub == "っ" {
+            let hiragana_peek_ahead_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index + 1 .. hiragana_index + 2];
+            let hiragana_peek_ahead: String = hiragana_peek_ahead_vec.into_iter().collect();
+            let geminate = match util::lookup(&hiragana_peek_ahead, util::HIRAGANA_TO_GEMINATE_TABLE) {
+                Some(geminate_index) => util::HIRAGANA_TO_GEMINATE_TABLE[geminate_index].1.to_string(),
+                None => "".to_string()
+            };
+            romaji = format!("{}{}", romaji, geminate);
+            hiragana_index += window;
+            window =
+                if hiragana_len - hiragana_index > 1 {
+                    2
+                } else {
+                    1
+                };
+            continue;
+        }
+
         if window == 2 {
             if hiragana_sub_vec[1] == 'ー' {
                 match util::lookup(&hiragana_sub_vec[0].to_string(), util::HIRAGANA_TO_VOWEL_TABLE) {
@@ -647,10 +671,10 @@ mod tests {
         assert_eq!(hiragana_to_romaji("かちゅん"), "kachunn".to_string());
         assert_eq!(hiragana_to_romaji("ちちゅん"), "chichunn".to_string());
         assert_eq!(hiragana_to_romaji("さちゅん"), "sachunn".to_string());
-        assert_eq!(hiragana_to_romaji("あっちゅん"), "axtuchunn".to_string());
+        assert_eq!(hiragana_to_romaji("あっちゅん"), "atchunn".to_string());
         // I2
         assert_eq!(hiragana_to_romaji("くーじゅん"), "kuujunn".to_string());
-        assert_eq!(hiragana_to_romaji("っゐいじゅん"), "qwiijunn".to_string());
+        assert_eq!(hiragana_to_romaji("っゐいじゅん"), "'wiijunn".to_string());
         assert_eq!(hiragana_to_romaji("おーじゅん"), "oojunn".to_string());
         // I3
         assert_eq!(hiragana_to_romaji("たちゅん"), "tachunn".to_string());
@@ -666,8 +690,8 @@ mod tests {
         assert_eq!(hiragana_to_romaji("はんすん"), "hannsunn".to_string());
         // I6
         assert_eq!(hiragana_to_romaji("すん"), "sunn".to_string());
-        assert_eq!(hiragana_to_romaji("すぃっくゎすん"), "sixtukwasunn".to_string());
-        assert_eq!(hiragana_to_romaji("ひっこおすん"), "hixtukoosunn".to_string());
+        assert_eq!(hiragana_to_romaji("すぃっくゎすん"), "sikkwasunn".to_string());
+        assert_eq!(hiragana_to_romaji("ひっこおすん"), "hikkoosunn".to_string());
         // I7
         assert_eq!(hiragana_to_romaji("ゆぶん"), "yubunn".to_string());
         assert_eq!(hiragana_to_romaji("とぅぶん"), "tubunn".to_string());
