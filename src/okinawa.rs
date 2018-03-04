@@ -1,7 +1,7 @@
 use util;
 
 pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
-    ("'nn","っん"),("'wa","っわ"),("'we","っゑ"),("'wi","っゐ"),("'wo","っを"),("'ya","っや"),("'yo","っよ"),("'yu","っゆ"),("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
+    ("'nn","っん"),("'wa","っわ"),("'we","っゑ"),("'wi","っゐ"),("'wo","っを"),("'ya","っや"),("'yo","っよ"),("'yu","っゆ"),("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("n'","ん"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
 ];
 
 pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
@@ -206,6 +206,141 @@ import Data.Tuple (swap)
 uprint $ sort $ swap <$> x
 */
 
+/*
+在詞幹後面加上「さ」（sa）和「あり」（ari）形成
+
+たかさん　高い
+連用形1　たかく
+条件形1　たかさらー
+条件形2　たかされー
+連用形2　たかさい
+名詞形　たかさ
+終止形　たかさん
+連体形　たかさる
+ga係結形　たかさら
+接続形　たかさてぃ
+過去形　たかさたん
+確証過去形　たかさてーん
+丁寧形　たかさいびーん
+
+あかさん　赤い
+
+非過去　あかさん　
+過去　あかさたん　
+推量　あかさるはじ（が）あかさら
+強調　（どぅ）あかさる
+疑問　あかさみ
+
+連体非過去　あかさる
+連体過去　あかさたる
+中止　あかさい　あかさぬ
+仮定　あかされー　あかさらー　あかさいねー
+理由　あかさくとぅ
+
+否定　あかこーねーん　あかこーねーらん
+なる　あかくないん
+丁寧　あかさいびーん
+のだ　あかさんてー　あかさる
+
+
+あちさん　暑い
+あっさん　浅い
+あながちさん　懐かしい
+あまさん　甘い
+
+いっぺいまーさん　とっても美味しい
+
+
+
+さん
+
+あちさん　暑い
+ゆたさる　いい
+さん terminal
+さる attributive
+
+はじかさん　恥ずかしい
+
+とぅーさん　遠い
+ちゅらさん　美しい
+
+とぅーさる なーふぁ　遠い那覇
+ゅらさる(ちゅらさぬ) いなぐ」(美しい女)
+
+連体詞
+いぃ　良い
+*/
+
+pub enum AdjType {
+    San, // さん
+    Yan  // やん
+}
+
+// 中止形  continuative form when used as a conjunction​
+pub enum AdjConjugation {
+    // 終止類 terminal
+    NonPast, // 断定非過去 さん　やん
+    Past, // 断定過去　さたん　やたん
+    Volitional, // 推量　さるはじ・さら　やるはじ・やら
+    Emphasis, // 強調　さる　やる
+    Question, // 疑問　さみ　やみ
+    
+    // 終止類 terminal
+    AttributiveNonPast, // 連体非過去　さる　な
+    AttributivePast, // 連体過去　さたる　やたる
+    ContinuativeConjunction, // 中止形 さい・さぬ　やい・なてぃ
+    Hypothetical, // 仮定形,已然形　されー・サラー・さいねー　やれー・やらー・やいねー
+    Reason, // 理由　さくとぅ　やくとぅ
+
+    // 終止類 terminal
+    Negative, // 否定　こーねーらん・こーねーん　ーあらん
+    Become, // なる　くないん　ないん
+    Polite, // 丁寧　さいびーん　やいびーん
+    Explanation // のだ　さんてー・さる　やんてー・やる
+}
+
+pub fn conjugate_adj(adj: &str, at: AdjType, conjugation: AdjConjugation) -> String {
+    match at {
+        AdjType::San =>
+            match conjugation {
+                AdjConjugation::NonPast => format!("{}{}", adj, "さん"),
+                AdjConjugation::Past => format!("{}{}", adj, "さたん"),
+                AdjConjugation::Volitional => format!("{}{}", adj, "さるはじ"),
+                AdjConjugation::Emphasis => format!("{}{}", adj, "さる"),
+                AdjConjugation::Question => format!("{}{}", adj, "さみ"),
+
+                AdjConjugation::AttributiveNonPast => format!("{}{}", adj, "さる"),
+                AdjConjugation::AttributivePast => format!("{}{}", adj, "さたる"),
+                AdjConjugation::ContinuativeConjunction => format!("{}{}", adj, "さい"),
+                AdjConjugation::Hypothetical => format!("{}{}", adj, "されー"),
+                AdjConjugation::Reason => format!("{}{}", adj, "さくとぅ"),
+
+                AdjConjugation::Negative => format!("{}{}", adj, "こーねーらん"),
+                AdjConjugation::Become => format!("{}{}", adj, "くないん"),
+                AdjConjugation::Polite => format!("{}{}", adj, "さいびーん"),
+                AdjConjugation::Explanation => format!("{}{}", adj, "さんてー")
+            },
+        AdjType::Yan =>
+            match conjugation {
+                AdjConjugation::NonPast => format!("{}{}", adj, "やん"),
+                AdjConjugation::Past => format!("{}{}", adj, "やたん"),
+                AdjConjugation::Volitional => format!("{}{}", adj, "やるはじ"),
+                AdjConjugation::Emphasis => format!("{}{}", adj, "やる"),
+                AdjConjugation::Question => format!("{}{}", adj, "やみ"),
+
+                AdjConjugation::AttributiveNonPast => format!("{}{}", adj, "な"),
+                AdjConjugation::AttributivePast => format!("{}{}", adj, "やたる"),
+                AdjConjugation::ContinuativeConjunction => format!("{}{}", adj, "やい"),
+                AdjConjugation::Hypothetical => format!("{}{}", adj, "やれー"),
+                AdjConjugation::Reason => format!("{}{}", adj, "やくとぅ"),
+
+                AdjConjugation::Negative => format!("{}{}", adj, "ーあらん"),
+                AdjConjugation::Become => format!("{}{}", adj, "ないん"),
+                AdjConjugation::Polite => format!("{}{}", adj, "やいびーん"),
+                AdjConjugation::Explanation => format!("{}{}", adj, "やんてー")
+            }
+    }
+}
 
 pub enum VerbType {
           // headword ending, nonpast negative, gerund
@@ -275,6 +410,8 @@ pub enum VerbTypes {
     III,
     IV
 }
+
+// jun = in
 
 pub enum VerbStem {
     Base,       // 基本語幹 base
@@ -1225,3 +1362,66 @@ IV
 ゆまびらん　読みません
 さびらん　しません
  */
+
+
+/*
+correspondence
+Japanese Okinawan
+/e/ 	/iː/[23] 	
+/i/
+
+/a/ 	/a/[23] 	
+
+/o/ 	/u/[23] 	
+/u/
+
+/ai/ 	/eː/ 	
+/ae/
+
+/au/ 	/oː/ 	
+/ao/
+/aja/
+
+/k/ 	/k/ 	/ɡ/ also occurs
+
+/ka/ 	/ka/ 	/ha/ also occurs
+
+/ki/ 	/t͡ɕi/ 	[t͡ɕi]
+
+/ku/ 	/ku/ 	/hu/, [ɸu] also occurs
+
+/si/ 	/si/ 	/hi/, [çi] also occurs
+
+/su/ 	/si/ 	[ɕi]; formerly distinguished as [si], /hi/ [çi] also occurs
+
+/tu/ 	/t͡ɕi/ 	[t͡ɕi]; formerly distinguished as [tsi]
+
+/da/ 	/ra/ 	[d] and [ɾ] have merged
+/de/ 	/ri/
+/do/ 	/ru/
+
+/ni/ 	/ni/ 	Moraic /ɴ/ also occurs
+/nu/ 	/nu/
+
+/ha/ 	/ɸa/ 	/pa/ also occurs, but rarely
+
+/hi/ 	/pi/ ~ /hi/ 	
+/he/
+
+/mi/ 	/mi/ 	Moraic /ɴ/ also occurs
+
+/mu/ 	/mu/
+
+/ri/ 	/i/ 	/iri/ unaffected
+
+/wa/ 	/wa/ 	Tends to become /a/ medially
+
+
+
+e 	i 	fune->funi, mame->maami, te->tii
+o 	u 	tori->tui, Yamato->Yamatu
+ki 	chi 	Okinawa->Uchinaa
+tsu 	chi 	tsume->chimi, tsukuru->chikuin
+ari, ori, uri 	ai, ui, ui 	hari->haai, tori->tui, Shuri->Sui
+awa 	aa 	Okinawa->Uchinaa 
+*/
