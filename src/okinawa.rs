@@ -8,6 +8,51 @@ pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
     ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っや","'ya"),("っゆ","'yu"),("っよ","'yo"),("っわ","'wa"),("っゐ","'wi"),("っゑ","'we"),("っを","'wo"),("っん","'n"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","n")
 ];
 
+/*
+わん I
+なー you
+くりー he,she,it
+
+わったー we,us
+なったー you pl
+たったー they
+
+あり　あれ
+あれー　あれは
+
+あんちゅ　あの人
+あんちゅたー　あの人達
+
+うぬ　その
+うり　それ
+うりひゃー　そら
+
+くぬ　この
+くま　ここ
+くり　これ
+くれー　これは
+
+ぬー　どれ
+
+そま　そこ
+あま　あそこ
+
+くりー　さき　やいびーん　（やん）
+くまー　うちなー　やいびーん　（やん）
+
+まじょーん　いっしょに
+どぅつい　一人で
+
+まじょーん　にんら
+どぅつい　かむん
+たいびけーん　二人で
+たいびけーんいか
+
+くーが　卵
+
+
+*/
+
 // if ん and next is ん or あいうえお　then n'
 // if ん and is b or p then m
 
@@ -60,11 +105,6 @@ pub fn romaji_to_hiragana(romaji: &str) -> String {
     hiragana.to_string()
 }
 
-/*
-fn lookup_romaji(hiragana: &str) -> String {
-
-}
-*/
 pub fn hiragana_to_romaji(hiragana: &str) -> String {
     let hiragana_chars = hiragana.chars();
     let hiragana_len = hiragana_chars.count();
@@ -271,12 +311,14 @@ ga係結形　たかさら
 いぃ　良い
 */
 
+#[derive(Clone, Debug)]
 pub enum AdjType {
     San, // さん
     Yan  // やん
 }
 
 // 中止形  continuative form when used as a conjunction​
+#[derive(Clone, Debug)]
 pub enum AdjConjugation {
     // 終止類 terminal
     NonPast, // 断定非過去 さん　やん
@@ -294,31 +336,58 @@ pub enum AdjConjugation {
 
     // 終止類 terminal
     Negative, // 否定　こーねーらん・こーねーん　ーあらん
+    PastNegative, // 否定　こーねーらんたん・こーねーんたん　ーあらんたん
     Become, // なる　くないん　ないん
     Polite, // 丁寧　さいびーん　やいびーん
     Explanation // のだ　さんてー・さる　やんてー・やる
 }
 
+fn adj_type_is_san(at: AdjType) -> bool {
+    match at {
+        AdjType::San => true,
+        _ => false
+    }
+}
+
+// San adjs are passed in with さん
+// Yan adjs are passed in without やん because they also function as nouns
 pub fn conjugate_adj(adj: &str, at: AdjType, conjugation: AdjConjugation) -> String {
+    let adj_len = adj.chars().count();
+    // remove さん from the stem
+    let adj_stem: String =
+        if adj_type_is_san(at.clone()) && adj_len > 1 {
+            let adj_ending_vec = &adj.chars().collect::<Vec<_>>()[adj_len - 2 .. adj_len];
+            let adj_sub_string: String = adj_ending_vec.into_iter().collect();
+            if adj_sub_string == "さん" {
+                let adj_stem_vec = &adj.chars().collect::<Vec<_>>()[0 .. adj_len - 2];
+                adj_stem_vec.into_iter().collect::<String>()
+            } else {
+                adj.to_string()
+            }
+        } else {
+            adj.to_string()
+        };
+        
     match at {
         AdjType::San =>
             match conjugation {
-                AdjConjugation::NonPast => format!("{}{}", adj, "さん"),
-                AdjConjugation::Past => format!("{}{}", adj, "さたん"),
-                AdjConjugation::Volitional => format!("{}{}", adj, "さるはじ"),
-                AdjConjugation::Emphasis => format!("{}{}", adj, "さる"),
-                AdjConjugation::Question => format!("{}{}", adj, "さみ"),
+                AdjConjugation::NonPast => adj.to_string(),
+                AdjConjugation::Past => format!("{}{}", adj_stem, "さたん"),
+                AdjConjugation::Volitional => format!("{}{}", adj_stem, "さるはじ"),
+                AdjConjugation::Emphasis => format!("{}{}", adj_stem, "さる"),
+                AdjConjugation::Question => format!("{}{}", adj_stem, "さみ"),
 
-                AdjConjugation::AttributiveNonPast => format!("{}{}", adj, "さる"),
-                AdjConjugation::AttributivePast => format!("{}{}", adj, "さたる"),
-                AdjConjugation::ContinuativeConjunction => format!("{}{}", adj, "さい"),
-                AdjConjugation::Hypothetical => format!("{}{}", adj, "されー"),
-                AdjConjugation::Reason => format!("{}{}", adj, "さくとぅ"),
+                AdjConjugation::AttributiveNonPast => format!("{}{}", adj_stem, "さる"),
+                AdjConjugation::AttributivePast => format!("{}{}", adj_stem, "さたる"),
+                AdjConjugation::ContinuativeConjunction => format!("{}{}", adj_stem, "さい"),
+                AdjConjugation::Hypothetical => format!("{}{}", adj_stem, "されー"),
+                AdjConjugation::Reason => format!("{}{}", adj_stem, "さくとぅ"),
 
-                AdjConjugation::Negative => format!("{}{}", adj, "こーねーらん"),
-                AdjConjugation::Become => format!("{}{}", adj, "くないん"),
-                AdjConjugation::Polite => format!("{}{}", adj, "さいびーん"),
-                AdjConjugation::Explanation => format!("{}{}", adj, "さんてー")
+                AdjConjugation::Negative => format!("{}{}", adj_stem, "こーねーらん"),
+                AdjConjugation::PastNegative => format!("{}{}", adj_stem, "こーねーらんたん"),
+                AdjConjugation::Become => format!("{}{}", adj_stem, "くないん"),
+                AdjConjugation::Polite => format!("{}{}", adj_stem, "さいびーん"),
+                AdjConjugation::Explanation => format!("{}{}", adj_stem, "さんてー")
             },
         AdjType::Yan =>
             match conjugation {
@@ -335,6 +404,7 @@ pub fn conjugate_adj(adj: &str, at: AdjType, conjugation: AdjConjugation) -> Str
                 AdjConjugation::Reason => format!("{}{}", adj, "やくとぅ"),
 
                 AdjConjugation::Negative => format!("{}{}", adj, "ーあらん"),
+                AdjConjugation::PastNegative => format!("{}{}", adj, "ーあらんたん"),
                 AdjConjugation::Become => format!("{}{}", adj, "ないん"),
                 AdjConjugation::Polite => format!("{}{}", adj, "やいびーん"),
                 AdjConjugation::Explanation => format!("{}{}", adj, "やんてー")
@@ -896,9 +966,19 @@ mod tests {
         assert_eq!(hiragana_to_romaji("あみぬふいん"), "aminufuin".to_string());
         assert_eq!(hiragana_to_romaji("からたあらいん"), "karataarain".to_string());
         assert_eq!(hiragana_to_romaji("ちらあらいん"), "chiraarain".to_string());
-
-        // incorrect
         assert_eq!(hiragana_to_romaji("ちゃんぷるーぬかみぶさん"), "champuruunukamibusan".to_string());
+    }
+
+    #[test]
+    fn test_conjugate_adj() {
+        assert_eq!(conjugate_adj("たかさん", AdjType::San, AdjConjugation::NonPast), "たかさん".to_string());
+        assert_eq!(conjugate_adj("あかさん", AdjType::San, AdjConjugation::NonPast), "あかさん".to_string());
+        assert_eq!(conjugate_adj("あちさん", AdjType::San, AdjConjugation::NonPast), "あちさん".to_string());
+        assert_eq!(conjugate_adj("とぅーさん", AdjType::San, AdjConjugation::NonPast), "とぅーさん".to_string());
+        assert_eq!(conjugate_adj("ちゅらさん", AdjType::San, AdjConjugation::NonPast), "ちゅらさん".to_string());
+
+        assert_eq!(conjugate_adj("しじか", AdjType::Yan, AdjConjugation::NonPast), "しじかやん".to_string());
+
     }
 }
 
@@ -1415,8 +1495,6 @@ Japanese Okinawan
 /ri/ 	/i/ 	/iri/ unaffected
 
 /wa/ 	/wa/ 	Tends to become /a/ medially
-
-
 
 e 	i 	fune->funi, mame->maami, te->tii
 o 	u 	tori->tui, Yamato->Yamatu
