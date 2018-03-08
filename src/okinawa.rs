@@ -1502,4 +1502,28 @@ ki 	chi 	Okinawa->Uchinaa
 tsu 	chi 	tsume->chimi, tsukuru->chikuin
 ari, ori, uri 	ai, ui, ui 	hari->haai, tori->tui, Shuri->Sui
 awa 	aa 	Okinawa->Uchinaa 
+
+
+サフー
+さふー　作法　さほう
+
+さらゆん　さらいん　習う。学ぶ。教えを受ける。
+
+しーじゃ　年上(の者)。年長(者)
+
+うっとぅ
+ウットゥ uQtu(年下、弟妹)の対
+
+ウヤマユン
+うやむゆん
+うやむいん　敬う。あがめる。
+
+ちち　(天体の) 月
+
+わ行 	ら行 	や行 	ま行 	は行 	な行 	た行 	さ行 	か行 	あ行
+あ段
+い段
+う段
+え段
+お段
 */
