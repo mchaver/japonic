@@ -1,13 +1,5 @@
 use util;
 
-pub const ROMAJI_TO_HIRAGANA_TABLE: &'static [(&str, &str)] = &[
-    ("'nn","っん"),("'wa","っわ"),("'we","っゑ"),("'wi","っゐ"),("'wo","っを"),("'ya","っや"),("'yo","っよ"),("'yu","っゆ"),("a","あ"),("ba","ば"),("be","べ"),("bi","び"),("bo","ぼ"),("bu","ぶ"),("bya","びゃ"),("byo","びょう"),("byu","びゅ"),("cha","ちゃ"),("che","ちぇ"),("chi","ち"),("cho","ちょ"),("chu","ちゅ"),("da","だ"),("de","で"),("di","でぃ"),("do","ど"),("du","どぅ"),("dya","ぢゃ"),("dye","ぢぇ"),("dyi","ぢぃ"),("dyo","ぢょ"),("dyu","ぢゅ"),("e","え"),("fa","ふぁ"),("fe","ふぇ"),("fi","ふぃ"),("fo","ふぉ"),("fu","ふ"),("ga","が"),("ge","げ"),("gi","ぎ"),("go","ご"),("gu","ぐ"),("gwa","ぐゎ"),("gwe","ぐぇ"),("gwi","ぐぃ"),("gwo","ぐぉ"),("gya","ぎゃ"),("gyo","ぎょ"),("gyu","ぎゅ"),("ha","は"),("he","へ"),("hi","ひ"),("ho","ほ"),("hu","ふ"),("hya","ひゃ"),("hyo","ひょ"),("hyu","ひゅ"),("i","い"),("ja","じゃ"),("je","じぇ"),("ji","じ"),("jo","じょ"),("ju","じゅ"),("ka","か"),("ke","け"),("ki","き"),("ko","こ"),("ku","く"),("kwa","くゎ"),("kwe","くぇ"),("kwi","くぃ"),("kwo","くぉ"),("kya","きゃ"),("kyo","きょ"),("kyu","きゅ"),("ma","ま"),("me","め"),("mi","み"),("mo","も"),("mu","む"),("mya","みゃ"),("myo","みょ"),("myu","みゅ"),("na","な"),("ne","ね"),("ni","に"),("n'","ん"),("nn","ん"),("no","の"),("nu","ぬ"),("nya","にゃ"),("nyo","にょ"),("nyu","にゅ"),("o","お"),("pa","ぱ"),("pe","ぺ"),("pi","ぴ"),("po","ぽ"),("pu","ぷ"),("pya","ぴゃ"),("pyo","ぴょお"),("pyu","ぴゅ"),("qnn","っん"),("qwa","っわ"),("qwe","っゑ"),("qwi","っゐ"),("qwo","っを"),("qya","っや"),("qyo","っよ"),("qyu","っゆ"),("ra","ら"),("re","れ"),("ri","り"),("ro","ろ"),("ru","る"),("rya","りゃ"),("ryo","りょ"),("ryu","りゅ"),("sa","さ"),("se","せ"),("sha","しゃ"),("she","しぇ"),("shi","し"),("sho","しょ"),("shu","しゅ"),("si","すぃ"),("so","そ"),("su","す"),("ta","た"),("te","て"),("ti","てぃ"),("to","と"),("tsa","つぁ"),("tse","つぇ"),("tsi","つぃ"),("tso","つぉ"),("tsu","つ"),("tu","とぅ"),("u","う"),("wa","わ"),("we","ゑ"),("wi","ゐ"),("wo","を"),("wu","をぉ"),("xtsu","っ"),("xtu","っ"),("ya","や"),("ye","えぇ"),("yi","いぃ"),("yo","よ"),("yu","ゆ"),("za","ざ"),("ze","ぜ"),("zi","ずぃ"),("zo","ぞ"),("zu","ず")
-];
-
-pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
-    ("あ","a"),("い","i"),("いぃ","yi"),("う","u"),("え","e"),("えぇ","ye"),("お","o"),("か","ka"),("が","ga"),("き","ki"),("きゃ","kya"),("きゅ","kyu"),("きょ","kyo"),("ぎ","gi"),("ぎゃ","gya"),("ぎゅ","gyu"),("ぎょ","gyo"),("く","ku"),("くぃ","kwi"),("くぇ","kwe"),("くぉ","kwo"),("くゎ","kwa"),("ぐ","gu"),("ぐぃ","gwi"),("ぐぇ","gwe"),("ぐぉ","gwo"),("ぐゎ","gwa"),("け","ke"),("げ","ge"),("こ","ko"),("ご","go"),("さ","sa"),("ざ","za"),("し","shi"),("しぇ","she"),("しゃ","sha"),("しゅ","shu"),("しょ","sho"),("じ","ji"),("じぇ","je"),("じゃ","ja"),("じゅ","ju"),("じょ","jo"),("す","su"),("すぃ","si"),("ず","zu"),("ずぃ","zi"),("せ","se"),("ぜ","ze"),("そ","so"),("ぞ","zo"),("た","ta"),("だ","da"),("ち","chi"),("ちぇ","che"),("ちゃ","cha"),("ちゅ","chu"),("ちょ","cho"),("ぢぃ","dyi"),("ぢぇ","dye"),("ぢゃ","dya"),("ぢゅ","dyu"),("ぢょ","dyo"),("っや","'ya"),("っゆ","'yu"),("っよ","'yo"),("っわ","'wa"),("っゐ","'wi"),("っゑ","'we"),("っを","'wo"),("っん","'n"),("つ","tsu"),("つぁ","tsa"),("つぃ","tsi"),("つぇ","tse"),("つぉ","tso"),("て","te"),("てぃ","ti"),("で","de"),("でぃ","di"),("と","to"),("とぅ","tu"),("ど","do"),("どぅ","du"),("な","na"),("に","ni"),("にゃ","nya"),("にゅ","nyu"),("にょ","nyo"),("ぬ","nu"),("ね","ne"),("の","no"),("は","ha"),("ば","ba"),("ぱ","pa"),("ひ","hi"),("ひゃ","hya"),("ひゅ","hyu"),("ひょ","hyo"),("び","bi"),("びゃ","bya"),("びゅ","byu"),("びょう","byo"),("ぴ","pi"),("ぴゃ","pya"),("ぴゅ","pyu"),("ぴょお","pyo"),("ふ","fu"),("ふ","fu"),("ふぁ","fa"),("ふぃ","fi"),("ふぇ","fe"),("ふぉ","fo"),("ぶ","bu"),("ぷ","pu"),("へ","he"),("べ","be"),("ぺ","pe"),("ほ","ho"),("ぼ","bo"),("ぽ","po"),("ま","ma"),("み","mi"),("みゃ","mya"),("みゅ","myu"),("みょ","myo"),("む","mu"),("め","me"),("も","mo"),("や","ya"),("ゆ","yu"),("よ","yo"),("ら","ra"),("り","ri"),("りゃ","rya"),("りゅ","ryu"),("りょ","ryo"),("る","ru"),("れ","re"),("ろ","ro"),("わ","wa"),("ゐ","wi"),("ゑ","we"),("を","wo"),("をぉ","wu"),("ん","n")
-];
-
 /*
 わん I
 なー you
@@ -53,192 +45,7 @@ pub const HIRAGANA_TO_ROMAJI_TABLE: &'static [(&str, &str)] = &[
 
 */
 
-// if ん and next is ん or あいうえお　then n'
-// if ん and is b or p then m
 
-pub fn romaji_to_hiragana(romaji: &str) -> String {
-    let romaji_len = romaji.len();
-
-    let mut romaji_index = 0;
-    let mut window = 1; // 1 to 3
-    let mut hiragana = "".to_string();
-
-    // convert 1 to 3 ascii chars to a single hirgana
-    // i is starting point, window is length to be looked up
-    while romaji_index < romaji_len && romaji_index + window < romaji_len + 1 {
-        let romaji_sub = &romaji[romaji_index .. romaji_index + window];
-
-        // check for gemminate consonant, if it exists, consume the char
-        // add a "っ" and skip the lookup
-        if window == 1 && romaji_index + 1 < romaji_len && util::is_consonant(romaji_sub) {
-            let romaji_peek_ahead = &romaji[romaji_index + 1 .. romaji_index + 2];
-
-            if romaji_sub == romaji_peek_ahead {
-                hiragana = format!("{}{}", hiragana, "っ");
-                romaji_index += 1;
-                window = 1;
-                continue;
-            }
-        }
-        
-        match util::lookup(romaji_sub, ROMAJI_TO_HIRAGANA_TABLE) {
-            Some(hiragana_index) => {
-                let single_hiragana = ROMAJI_TO_HIRAGANA_TABLE[hiragana_index].1.to_string();
-                hiragana = format!("{}{}", hiragana, single_hiragana);
-                romaji_index += window;
-                window = 1;
-            },
-            None => {
-                // romaji_sub was not found in the table, increase the window size if it was
-                // not found. If the window is too large then move the index over and reset
-                // the window size to 1
-                if window < 3 {
-                    window += 1;
-                } else {
-                    romaji_index += 1;
-                    window = 1;
-                }
-            },
-        }
-    }
-    
-    hiragana.to_string()
-}
-
-pub fn hiragana_to_romaji(hiragana: &str) -> String {
-    let hiragana_chars = hiragana.chars();
-    let hiragana_len = hiragana_chars.count();
-
-    let mut hiragana_index = 0;
-    let mut window = 
-        if hiragana_len > 1 {
-            2
-        } else {
-            1
-        };
-    let mut romaji = "".to_string();
-
-    while hiragana_index < hiragana_len && hiragana_index + window < hiragana_len + 1 {
-        let hiragana_sub_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
-        let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
-        let hiragana_sub: &str = &hiragana_sub_string[..];
-
-        // look ahead
-        if window == 1 && hiragana_index + 1 < hiragana_len {
-            let hiragana_peek_ahead_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index + 1 .. hiragana_index + 2];
-            let hiragana_peek_ahead: String = hiragana_peek_ahead_vec.into_iter().collect();
-
-            // "ん" as "n" or "m"
-            if hiragana_sub == "ん" {
-                let nasal = if util::hiragana_is_bilabial(&hiragana_peek_ahead) {
-                    "m".to_string()
-                } else if util::hiragana_merges_n(&hiragana_peek_ahead) {
-                    "n'".to_string()
-                } else {
-                    "n".to_string()
-                };
-                
-                romaji = format!("{}{}", romaji, nasal);
-                hiragana_index += window;
-                window =
-                    if hiragana_len - hiragana_index > 1 {
-                        2
-                    } else {
-                        1
-                    };
-                continue;
-            }
-
-            // check for gemminate consonant, if it exists, consume the char
-            // add the geminnated consonant and skip the lookup
-            if hiragana_sub == "っ" {
-                let geminate = match util::lookup(&hiragana_peek_ahead, util::HIRAGANA_TO_GEMINATE_TABLE) {
-                    Some(geminate_index) => util::HIRAGANA_TO_GEMINATE_TABLE[geminate_index].1.to_string(),
-                    None => "".to_string()
-                };
-                romaji = format!("{}{}", romaji, geminate);
-                hiragana_index += window;
-                window =
-                    if hiragana_len - hiragana_index > 1 {
-                        2
-                    } else {
-                        1
-                    };
-                continue;
-            }
-        }
-
-        if window == 2 {
-            if hiragana_sub_vec[1] == 'ー' {
-                match util::lookup(&hiragana_sub_vec[0].to_string(), util::HIRAGANA_TO_VOWEL_TABLE) {
-                    Some(vowel_index) => {
-                        match util::lookup(&hiragana_sub_vec[0].to_string(), HIRAGANA_TO_ROMAJI_TABLE) {
-                            Some(romaji_index) => {
-                                let prev = HIRAGANA_TO_ROMAJI_TABLE[romaji_index].1.to_string();
-                                let hiragana_vowel = util::HIRAGANA_TO_VOWEL_TABLE[vowel_index].1.to_string();
-                                match util::lookup(&hiragana_vowel, HIRAGANA_TO_ROMAJI_TABLE) {
-                                    Some(romaji_vowel_index) => {
-                                        let romaji_vowel = HIRAGANA_TO_ROMAJI_TABLE[romaji_vowel_index].1.to_string();
-                                        romaji = format!("{}{}{}", romaji, prev, romaji_vowel);
-                                        hiragana_index += window;
-                                        window =
-                                            if hiragana_len - hiragana_index > 1 {
-                                                2
-                                            } else {
-                                                1
-                                            };
-                                        continue;
-                                    },
-                                    None => {
-                                        ()
-                                    }
-                                }                                
-                            },
-                            None => {
-                                ()
-                            }
-                        }
-                    },
-                    None => {
-                        ()
-                    }
-                }
-            }
-        }
-
-        match util::lookup(hiragana_sub, HIRAGANA_TO_ROMAJI_TABLE) {
-            Some(romaji_index) => {
-                let single_romaji = HIRAGANA_TO_ROMAJI_TABLE[romaji_index].1.to_string();
-                romaji = format!("{}{}", romaji, single_romaji);
-                hiragana_index += window;
-                window =
-                    if hiragana_len - hiragana_index > 1 {
-                        2
-                    } else {
-                        1
-                    };
-            },
-            None => {
-                // hiragana_sub was not found in the table, increase the window size if it was
-                // not found. If the window is too large then move the index over and reset
-                // the window size relative to the length of string.
-                if window > 1 {
-                    window -= 1;
-                } else {
-                    hiragana_index += 1;
-                    window =
-                        if hiragana_len - hiragana_index > 1 {
-                            2
-                        } else {
-                            1
-                        };
-                }
-            },
-        }
-    }
-
-    romaji.to_string()
-}
 /*
 import Text.Show.Unicode (uprint)
 import Data.List (sort)
@@ -484,19 +291,21 @@ pub enum VerbTypes {
 // jun = in
 
 pub enum VerbStem {
+    // 非過去否定
     Base,       // 基本語幹 base
-    // 基本語幹+a  : N（否定）, riiN（可能・受身）, suN(使役)
-    // 基本語幹+ee : 条件形, 命令形
-    // 基本語幹+i  : 命令形
-    // 基本語幹+u  : na(な。禁止), ka(まで), kazirii(まで・かぎり)
+    // 基本語幹+a  : N（否定）, riiN（可能・受身）, suN(使役), a/wa ば,　あ列
+    // 基本語幹+ee : 条件形, 命令形　え列
+    // 基本語幹+i  : 命令形　い列
+    // 基本語幹+u  : na(な。禁止), ka(まで), kazirii(まで・かぎり)　う列
 
     Connective, // 連用語幹 connective
-    // 連用語幹+i : ga(〜しに), ciroo(〜しそう), uusuN(〜できる), busaN(〜したい)
-    // 連用語幹+(j)abiiN/ibiiN :
+    // 連用語幹+i : ga(〜しに), ciroo(〜しそう), uusuN(〜できる), busaN(〜したい)　// い列
+    // 連用語幹+(j)abiiN/ibiiN : // あ列　い列
 
     // 連用形 をり
 
-    Derivative, // 派生語幹 derivative stem
+    // 非過去
+    Derivative, // 派生語幹 derivative stem　u/i/○
     // 派生語幹+uN/iN/N          : 終止形(現在形)
     // 派生語幹+uru/iru/ru       : baa(〜時)、hazi(〜はず), ru(ぞ)
     // 派生語幹+ura/ira/ra       : 疑問の助詞ga(か)
@@ -506,11 +315,12 @@ pub enum VerbStem {
     // 派生語幹+uti/iti/ti       : 〜していたか = 過去進行中止形
     // 派生語幹+uteeN/iteeN/teeN : 〜していただろう = 過去進行推量形
 
-    Euphonic    // 音便語幹 euphonic change stem
-    // 音便語幹+i   : 〜して
-    // 音便語幹+aN  : 〜した
-    // 音便語幹+eeN : (今までに)きっと〜している,〜したに違いない,〜してある
-    // 音便語幹+ooN : 〜している
+    // 
+    Euphonic    // 音便語幹 euphonic change stem　
+    // 音便語幹+i   : 〜して　い列
+    // 音便語幹+aN  : 〜した　あ列
+    // 音便語幹+eeN : (今までに)きっと〜している,〜したに違いない,〜してある　え列
+    // 音便語幹+ooN : 〜している　お列
 }
 
 pub enum VerbConjugation {
@@ -551,6 +361,183 @@ pub enum VerbConjugation {
     InterrogativePastPoliteII // bitiiga
 }
 
+/*
+pub fn replace_last(x: &str, y: &str) -> String {
+    format!("{}{}", truncate_chars(x, x.chars().count()-1), y)
+}
+
+util::lookups(a,b, util::HIRAGA_TABLE_TO_ROW)
+
+        let hiragana_sub_vec = &hiragana.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
+        let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
+        let hiragana_sub: &str = &hiragana_sub_string[..];
+
+ */
+/*
+pub fn rl(verb: &str, y: &str) -> String {
+    let length = y.chars().count();
+    let last: String = (&y.chars().collect::<Vec<_>>()[length-1 .. length]).into_iter().collect();
+    let new = util::lookups(last,"あ", util::HIRAGA_TABLE_TO_ROW)
+}
+
+基本語幹 	連用語幹 	派生語幹 	音便語幹
+那覇方言の第1種動詞の語幹
+書く 	ka 	k 	c 	c 	c 	kacuN(書く)、cicuN(聞く)、sacuN(咲く)、ʔaQcuN(歩く)
+漕ぐ 	kuu 	g 	z 	z 	z 	kuuzuN(漕ぐ)、ʔwiizuN(泳ぐ)、ʔoozuN(扇ぐ)
+立つ 	ta 	t 	c 	c 	Qc 	tacuN(立つ)、ʔucuN(打つ)、kacuN(勝つ)
+育つ 	sura 	t 	c 	c 	c 	suracuN(育つ)、tamucuN(保つ)、kucuN(朽ちる)
+殺す 	kuru 	s 	s 	s 	c 	kurusuN(殺す)、meesuN(燃やす)、haNsuN(外す)
+為る 	‐ 	s 	s 	s 	s 	suN(為る)、siQkwasuN(敷く)、hiQkoosuN(比較する)
+呼ぶ 	ju 	b 	b 	b 	r/d 	jubuN(呼ぶ)、tubuN(飛ぶ)、musubuN(結ぶ)
+読む 	ju 	m 	m 	m 	r/d 	jumuN(読む)、numuN(飲む)、ʔamuN(編む)
+眠る 	niN 	r 	z 	z 	t 	niNzuN(眠る)、kaNzuN(被る)、ʔaNzuN(あぶる)
+見る 	NN 	r 	z 	z 	c 	NNzuN(見る)、kuNzuN(括る)
+死ぬ 	shi     n       n       n       j       shinuN 死ぬん
+
+那覇方言の第2種動詞の語幹
+取る 	tu 	r 	○/j 	○ 	Qt 	tuiN(取る)
+刈る 	ka 	r 	○/j 	○ 	t 	kaiN(刈る)、nubuiN(登る)、ʔaraiN(洗う)
+蹴る 	ki 	r 	○/j 	○ 	Qc 	kiiN(蹴る)、ʔiiN(入る)、hiiN(放る)、ciiN(切る)
+煮る 	ni 	r 	○/j 	○ 	c/(Qt) 	niiN(煮る)、ciiN(着る)、ʔiiN(言う)、iiN(座る)
+
+那覇方言の第3種動詞の語幹
+有る 	ʔa 	r 	○/j/i 	○ 	t 	ʔaN(有る)、uN(居る)、jaN(である)
+*/
+
+pub fn base_stem(verb: &str, vt: VerbTypes) -> String {
+    use self::VerbTypes::*;
+    match vt {
+        IV  => "".to_string(),
+        III => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+        II1 | II2 | II3 | II4  => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+        I1 => format!("{}か", truncate_chars(verb, verb.chars().count() - 2)),
+        I2 => format!("{}が", truncate_chars(verb, verb.chars().count() - 2)),
+        I3 => format!("{}た", truncate_chars(verb, verb.chars().count() - 2)),
+        I4 => format!("{}た", truncate_chars(verb, verb.chars().count() - 2)),
+        I5 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I6 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I7 => format!("{}ば", truncate_chars(verb, verb.chars().count() - 2)),
+        I8 => format!("{}ま", truncate_chars(verb, verb.chars().count() - 2)),
+        I9 => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+        I10 => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+    }
+}
+
+pub fn connective_stem(verb: &str, vt: VerbTypes) -> String {
+    use self::VerbTypes::*;
+    match vt {
+        IV  => "".to_string(),
+        III => format!("{}あ", truncate_chars(verb, verb.chars().count() - 2)),
+        II1 | II2 | II3 | II4 => format!("{}あ", truncate_chars(verb, verb.chars().count() - 2)),
+        I1 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I2 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I3 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I4 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I5 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I6 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I7 => format!("{}ば", truncate_chars(verb, verb.chars().count() - 2)),
+        I8 => format!("{}ま", truncate_chars(verb, verb.chars().count() - 2)),
+        I9 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I10 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+    }
+}
+
+pub fn derivative_stem(verb: &str, vt: VerbTypes) -> String {
+    use self::VerbTypes::*;
+    match vt {
+        IV  => "".to_string(),
+        III => format!("{}あ", truncate_chars(verb, verb.chars().count() - 2)),
+        II1 | II2 | II3 | II4 => format!("{}あ", truncate_chars(verb, verb.chars().count() - 2)),
+        I1 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I2 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I3 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I4 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I5 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I6 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I7 => format!("{}ば", truncate_chars(verb, verb.chars().count() - 2)),
+        I8 => format!("{}ま", truncate_chars(verb, verb.chars().count() - 2)),
+        I9 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I10 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+    }
+}
+
+pub fn euphonic_stem(verb: &str, vt: VerbTypes) -> String {
+    use self::VerbTypes::*;
+    match vt {
+        IV  => "".to_string(),
+        III => format!("{}た", truncate_chars(verb, verb.chars().count() - 2)),
+        II1 | II2 | II3 | II4 => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+        I1 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I2 => format!("{}じゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I3 => format!("{}っちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I4 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I5 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+        I6 => format!("{}さ", truncate_chars(verb, verb.chars().count() - 2)),
+        I7 => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+        I8 => format!("{}ら", truncate_chars(verb, verb.chars().count() - 2)),
+        I9 => format!("{}た", truncate_chars(verb, verb.chars().count() - 2)),
+        I10 => format!("{}ちゃ", truncate_chars(verb, verb.chars().count() - 2)),
+    }
+}
+
+pub fn chars_sub_str(s: &str, start: usize, end: usize) -> String {
+    let s_sub_vec = &s.chars().collect::<Vec<_>>()[start .. end];
+    let s_sub_string: String = s_sub_vec.into_iter().collect();
+    s_sub_string
+}
+
+pub fn chars_split(s: &str, split: usize) -> (String,String) {
+    let l_sub_vec = &s.chars().collect::<Vec<_>>()[0 .. split];
+    let l: String = l_sub_vec.into_iter().collect();
+
+    let r_sub_vec = &s.chars().collect::<Vec<_>>()[split .. s.chars().count()];
+    let r: String = r_sub_vec.into_iter().collect();
+
+    (l,r)
+}
+
+pub fn replace_last_with_vowel(word: &str, vowel: &str) -> String {
+    let word_len = word.chars().count();
+    if word_len > 1 {
+        let (left, right) = chars_split(word, word_len-2);
+
+        match util::lookups_string(&right[..], vowel, util::HIRAGANA_TO_ROW_TABLE) {
+            Some(tail) => {
+                format!("{}{}", left, tail)
+            },
+            None       => {
+                let (left, right) = chars_split(word, word_len-1);
+
+                match util::lookups_string(&right[..], vowel, util::HIRAGANA_TO_ROW_TABLE) {
+                    Some(tail) => format!("{}{}", left, tail),
+                    None       => word.to_string()
+                }
+            }
+        }
+    } else if word_len == 1 {
+        let (left, right) = chars_split(word, word_len-1);
+
+        match util::lookups_string(&right[..], vowel, util::HIRAGANA_TO_ROW_TABLE) {
+            Some(tail) => format!("{}{}", left, tail),
+            None       => word.to_string()
+        } 
+    } else {
+        word.to_string()
+    }
+    
+    // let hiragana_sub_vec = &word.chars().collect::<Vec<_>>()[hiragana_index .. hiragana_index + window];
+    // let hiragana_sub_string: String = hiragana_sub_vec.into_iter().collect();
+    // let hiragana_sub: &str = &hiragana_sub_string[..];
+}
+
+pub fn conjugate_verb(verb: &str, vt: VerbTypes, conjugation: VerbConjugation) -> String {
+    use self::VerbConjugation::*;
+    match conjugation {
+        NonPast => verb.to_string(),
+        NonPastNegative => base_stem(verb, vt),
+        _ => verb.to_string()
+    }
+}
 
 pub fn conjugate_iv_verbs(verb: &str, conjugation: VerbConjugation) -> &str {
     if verb == "chuun" {
@@ -825,12 +812,17 @@ mod tests {
     }
 
     #[test]
+    fn test_conjugate_verb() {
+        assert_eq!(conjugate_verb("とぅいん",VerbTypes::II2, VerbConjugation::NonPastNegative), "とぅら".to_string());
+    }
+    
+    #[test]
     fn test_iv() {
 
     }
 
     #[test]
-    fn test_conjugate_verb() {
+    fn test_conjugate_verbs() {
         assert_eq!(conjugate_verbs("jaN",VerbTypes::III, VerbConjugation::NonPastNegative), "jaraN".to_string());
         // conjugations
         assert_eq!(conjugate_verbs("kacuN",VerbTypes::I1, VerbConjugation::NonPastNegative), "kakaN".to_string());
@@ -980,6 +972,21 @@ mod tests {
         assert_eq!(conjugate_adj("しじか", AdjType::Yan, AdjConjugation::NonPast), "しじかやん".to_string());
 
     }
+
+    #[test]
+    fn test_replace_last_with_vowel() {
+        assert_eq!(replace_last_with_vowel("かた","あ"), "かた".to_string());
+        assert_eq!(replace_last_with_vowel("かた","い"), "かてぃ".to_string());
+        assert_eq!(replace_last_with_vowel("かた","う"), "かとぅ".to_string());
+        assert_eq!(replace_last_with_vowel("かた","え"), "かて".to_string());
+        assert_eq!(replace_last_with_vowel("かた","お"), "かと".to_string());
+
+        assert_eq!(replace_last_with_vowel("かちゃ","あ"), "かちゃ".to_string());
+        assert_eq!(replace_last_with_vowel("かちゃ","い"), "かち".to_string());
+        assert_eq!(replace_last_with_vowel("かちゃ","う"), "かちゅ".to_string());
+        assert_eq!(replace_last_with_vowel("かちゃ","え"), "かちぇ".to_string());
+        assert_eq!(replace_last_with_vowel("かちゃ","お"), "かちょ".to_string());
+    }
 }
 
 /*
@@ -1005,15 +1012,6 @@ eat
 
 もーいん【舞いん】
  もーやー【舞やー】 mooyaa "dancer".
-
-那覇方言の第2種動詞の語幹
-取る 	tu 	r 	○/j 	○ 	Qt 	tuiN(取る)
-刈る 	ka 	r 	○/j 	○ 	t 	kaiN(刈る)、nubuiN(登る)、ʔaraiN(洗う)
-蹴る 	ki 	r 	○/j 	○ 	Qc 	kiiN(蹴る)、ʔiiN(入る)、hiiN(放る)、ciiN(切る)
-煮る 	ni 	r 	○/j 	○ 	c/(Qt) 	niiN(煮る)、ciiN(着る)、ʔiiN(言う)、iiN(座る)
-
-那覇方言の第3種動詞の語幹
-有る 	ʔa 	r 	○/j/i 	○ 	t 	ʔaN(有る)、uN(居る)、jaN(である)
 
 Ia1 (tuin,take),(wakain,understand)
 Ia2 warain, laugh
