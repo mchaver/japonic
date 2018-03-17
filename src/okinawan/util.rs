@@ -217,3 +217,31 @@ pub fn replace_last_with_vowel(word: &str, vowel: &str) -> String {
         word.to_string()
     }
 }
+
+
+pub fn remove_last_mora(word: &str) -> String {
+    let word_len = word.chars().count();
+    if word_len > 1 {
+        let (left, right) = util::chars_split(word, word_len-2);
+        if two_char_is_single_mora(&right) {
+            format!("{}", left)            
+        } else {
+            let (left, _) = util::chars_split(word, word_len-1);
+            format!("{}", left)
+        }
+    } else if word_len == 1 {
+        let (left, _) = util::chars_split(word, word_len-1);
+        format!("{}", left);
+        word.to_string()
+    } else {
+        word.to_string()
+    }
+}
+
+pub fn two_char_is_single_mora(s: &str) -> bool {
+    s.chars().count() == 2 && ["いぃ","えぇ","きゃ","きゅ","きょ","ぎゃ","ぎゅ","ぎょ","くぃ","くぇ","くぉ","くゎ","ぐぃ","ぐぇ","ぐぉ","ぐゎ","しぇ","しゃ","しゅ","しょ","じぇ","じゃ","じゅ","じょ","すぃ","ずぃ","ちぇ","ちゃ","ちゅ","ちょ","ぢぃ","ぢぇ","ぢゃ","ぢゅ","ぢょ","っ","っや","っゆ","っよ","っわ","っゐ","っゑ","っを","っん","つ","つぁ","つぃ","つぇ","つぉ","てぃ","でぃ","とぅ","どぅ","にゃ","にゅ","にょ","ひゃ","ひゅ","ひょ","びゃ","びゅ","びょ","ぴゃ","ぴゅ","ぴょ","ふぁ","ふぃ","ふぇ","ふぉ","みゃ","みゅ","みょ","りゃ","りゅ","りょ","をぉ"].contains(&s)
+}
+
+/*
+
+*/

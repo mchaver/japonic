@@ -1,5 +1,24 @@
 use std::cmp::Ordering::{Equal,Greater,Less};
 
+pub fn truncate_chars(s: &str, max_chars: usize) -> &str {
+    match s.char_indices().nth(max_chars) {
+        None => s,
+        Some((idx, _)) => &s[..idx],
+    }
+}
+
+pub fn split_chars_at(s: &str, split: usize) -> (String,String) {
+    let length = s.chars().count();
+
+    let l_sub_vec = &s.chars().collect::<Vec<_>>()[0 .. split];
+    let l: String = l_sub_vec.into_iter().collect();
+
+    let r_sub_vec = &s.chars().collect::<Vec<_>>()[split .. s.chars().count()];
+    let r: String = r_sub_vec.into_iter().collect();
+    (l,r)
+}
+
+
 // the table provided must be sorted or it may not return the correct value
 pub fn lookup(s: &str, table: &'static [(&str,&str)]) -> Option<usize> {
     match table.binary_search_by(|&(key, _)| {
