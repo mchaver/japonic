@@ -97,3 +97,14 @@ pub fn chars_split(s: &str, split: usize) -> (String,String) {
 
     (l,r)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_chars_split() {
+        assert_eq!(chars_split("かた",1), ("か".to_string(), "た".to_string()));
+        assert_eq!(chars_split("あい",1), ("あ".to_string(), "い".to_string()));
+        assert_eq!(chars_split("あ",1), ("あ".to_string(), "".to_string()));
+    }
+}

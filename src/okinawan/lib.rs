@@ -208,14 +208,47 @@ pub fn replace_last_with_vowel(word: &str, vowel: &str) -> String {
 
 pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) -> String {
     use self::VerbConjugation::*;
+    use self::VerbType::*;
     match conjugation {
         // NonPast => verb.to_string(),
-        NonPast => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "ん"),
+        NonPast =>
+            match vt {
+                I1 | I2 | I3 | I4 | I5 | I6 | I7 | I8 | I9 | I10 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "ん"),
+                II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "い"), "ん"),
+                _ => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "ん"), 
+            },
         NonPastNegative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "あ"), "ん"),
         PastNegative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "あ"), "んたん"),
         Past => format!("{}{}", replace_last_with_vowel(&euphonic_stem(verb, vt), "あ"), "ん"),
         NonPastPolite => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "あ"), "びーん"),
-        
+
+        YesNoInterrogative =>
+            match vt {
+                II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "い"), "み"),
+                _ => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "み"),
+            },
+        WhInterrogative => 
+            match vt {
+                II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "い"), "が"),
+                _ => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "が"),
+            },
+        Honorific =>
+            match vt {
+                II1 | II2 | II3 | II4 => format!("{}{}", connective_stem(verb, vt), "みせーん"),
+                _ => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "みせーん"),
+            },
+        Potential => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "ゆーすん"),
+        Desiderative => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "ぶさん"),
+        Imperative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "え"), "ー"),
+
+        Prohibitive =>
+            match vt {
+                II1 | II2 | II3 | II4 => format!("{}{}", base_stem(verb, vt), "んな"),
+                _ => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "う"), "な"),
+            },
+
+        Gerund => replace_last_with_vowel(&euphonic_stem(verb, vt), "い"),
+            
         _ => verb.to_string()
     }
 }
