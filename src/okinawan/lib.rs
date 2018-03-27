@@ -220,7 +220,11 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
         NonPastNegative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "あ"), "ん"),
         PastNegative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "あ"), "んたん"),
         Past => format!("{}{}", replace_last_with_vowel(&euphonic_stem(verb, vt), "あ"), "ん"),
-        NonPastPolite => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "あ"), "びーん"),
+        NonPastPolite => match vt {
+            II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "びーん"), // やびーん
+            _ => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "あ"), "びーん"),
+
+        }
 
         YesNoInterrogative =>
             match vt {
@@ -234,7 +238,7 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
             },
         Honorific =>
             match vt {
-                II1 | II2 | II3 | II4 => format!("{}{}", connective_stem(verb, vt), "みせーん"),
+                // II1 | II2 | II3 | II4 => format!("{}{}", connective_stem(verb, vt), "みせーん"),
                 _ => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "みせーん"),
             },
         Potential => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "ゆーすん"),
@@ -243,7 +247,7 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
 
         Prohibitive =>
             match vt {
-                II1 | II2 | II3 | II4 => format!("{}{}", base_stem(verb, vt), "んな"),
+                // II1 | II2 | II3 | II4 => format!("{}{}", base_stem(verb, vt), "んな"), // んな
                 _ => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "う"), "な"),
             },
 
