@@ -162,7 +162,11 @@ pub fn euphonic_stem(verb: &str, vt: VerbType) -> String {
     match vt {
         IV  => "".to_string(),
         III => format!("{}た", bare_stem),
-        II1 | II2 | II3 | II4 => format!("{}ら", bare_stem),
+        // II1 | II2 | II3 | II4 => format!("{}ら", bare_stem),
+        II1 => format!("{}った", bare_stem),
+        II2 => format!("{}た", bare_stem),
+        II3 => format!("{}っちゃ", bare_stem),
+        II4 => format!("{}ちゃ", bare_stem), // った
         I1 => format!("{}ちゃ", bare_stem),
         I2 => format!("{}じゃ", bare_stem),
         I3 => format!("{}っちゃ", bare_stem),
@@ -211,6 +215,12 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
     use self::VerbType::*;
     match conjugation {
         // NonPast => verb.to_string(),
+        AttributiveNonPast =>
+            match vt {
+                I1 | I2 | I3 | I4 | I5 | I6 | I7 | I8 | I9 | I10 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "る"),
+                II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "い"), "る"),
+                _ => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "る"), 
+            },
         NonPast =>
             match vt {
                 I1 | I2 | I3 | I4 | I5 | I6 | I7 | I8 | I9 | I10 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "ん"),
@@ -251,8 +261,12 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
                 _ => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "う"), "な"),
             },
 
-        Gerund => replace_last_with_vowel(&euphonic_stem(verb, vt), "い"),
+        Gerund | Continuative => replace_last_with_vowel(&euphonic_stem(verb, vt), "い"),
+        Progressive => format!("{}{}", replace_last_with_vowel(&euphonic_stem(verb, vt), "お"), "ーん"), // えーん
             
+        Causative => format!("{}{}", &base_stem(verb, vt), "すん"),
+        Passive => format!("{}{}", &base_stem(verb, vt), "りゆん"), // りーん
+
         _ => verb.to_string()
     }
 }

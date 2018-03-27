@@ -92,7 +92,12 @@ mod tests {
         assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Imperative ), "むてー".to_string());
         assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Prohibitive ), "むとぅな".to_string());
         assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Desiderative ), "むちぶさん".to_string());
-
+        assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::AttributiveNonPast ), "むちゅる".to_string());
+        assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Progressive ), "むっちょーん".to_string());
+        assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Continuative ), "むっち".to_string());
+        assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Causative ), "むたすん".to_string());
+        assert_eq!(conjugate_verb("むちゅん", VerbType::I3, VerbConjugation::Passive ), "むたりゆん".to_string());
+        
         assert_eq!(conjugate_verb("ゆむん", VerbType::I8, VerbConjugation::NonPast ), "ゆむん".to_string());
         assert_eq!(conjugate_verb("ゆむん", VerbType::I8, VerbConjugation::NonPastNegative ), "ゆまん".to_string());
         assert_eq!(conjugate_verb("ゆむん", VerbType::I8, VerbConjugation::PastNegative ), "ゆまんたん".to_string());
@@ -108,7 +113,7 @@ mod tests {
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::NonPast ), "とぅいん".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::NonPastNegative ), "とぅらん".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::PastNegative ), "とぅらんたん".to_string());
-        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Past ), "とぅらん".to_string()); // た
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Past ), "とぅたん".to_string()); // ら
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::NonPastPolite ), "とぅいびーん".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::YesNoInterrogative ), "とぅいみ".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::WhInterrogative ), "とぅいが".to_string());
@@ -117,6 +122,88 @@ mod tests {
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Prohibitive ), "とぅるな".to_string()); // とぅんな
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Desiderative ), "とぅいぶさん".to_string());
 
-
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::AttributiveNonPast ), "とぅいる".to_string());
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Progressive ), "とぅとーん".to_string()); // とぅろーん
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Continuative ), "とぅてぃ".to_string());
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Causative ), "とぅらすん".to_string());
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Passive ), "とぅらりゆん".to_string());
+        
     }
 }
+
+/*
+I1
+かちゅん　書ちゅん
+ちちゅん　聞ちゅん
+さちゅん　咲ちゅん
+っあっちゅん　歩ちゅん
+
+I2
+くうじゅん　漕じゅん
+っゐーじゅん　泳じゅん
+っおーじゅん　扇じゅん
+
+I3
+たちゅん　立ちゅん
+っうちゅん　打ちゅん
+かちゅん　勝ちゅん
+
+I4
+すらちゅん　育ちゅん
+たむちゅん　保ちゅん
+くちゅん　朽ちゅん
+
+I5
+くるすん　殺すん
+めーすん　燃すん
+はんすん　外すん
+
+I6
+すん　為ん
+しっくぁすん　敷くぁすん
+ひっこーすん　比較すん
+
+I7
+ゆぶん　呼ぶん
+とぅぶん　飛ぶん
+むすぶん　結ぶん
+
+I8
+ゆむん　読むん
+ぬむん　飲むん
+っあむん　編むん
+
+I9
+にんじゅん　眠じゅん
+かんじゅん　被じゅん
+っあんじゅん
+
+I10
+んんじゅん　見じゅん
+くんじゅん　括じゅん
+
+II1
+とぅいん　取いん
+
+II2
+かいん　刈いん
+ぬぶいん　登いん
+っあらいん　洗いん
+
+II3
+きーん　蹴ーん
+っいーん　入ーん
+ひーん　放ーん
+ちーん　切ーん
+
+II4
+にーん　煮ーん
+ちーん　着ーん
+っいーん　言ーん
+いーん　座ーん
+
+III
+あん　有ん
+うん　居ん
+やん　
+*/
