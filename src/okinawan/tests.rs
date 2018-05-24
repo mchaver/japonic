@@ -80,7 +80,8 @@ mod tests {
         assert_eq!(conjugate_verb("かちゅん", VerbType::I1, VerbConjugation::Imperative ), "かけー".to_string());
         assert_eq!(conjugate_verb("かちゅん", VerbType::I1, VerbConjugation::Prohibitive ), "かくな".to_string());
         assert_eq!(conjugate_verb("かちゅん", VerbType::I1, VerbConjugation::Desiderative ), "かちぶさん".to_string());
-
+        assert_eq!(conjugate_verb("かちゅん", VerbType::I1, VerbConjugation::Volitional ), "かか".to_string());
+        
         assert_eq!(conjugate_verb("くーじゅん", VerbType::I2, VerbConjugation::NonPast ), "くーじゅん".to_string());
         assert_eq!(conjugate_verb("くーじゅん", VerbType::I2, VerbConjugation::NonPastNegative ), "くーがん".to_string());
         assert_eq!(conjugate_verb("くーじゅん", VerbType::I2, VerbConjugation::PastNegative ), "くーがんたん".to_string());
@@ -240,17 +241,169 @@ mod tests {
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Imperative ), "とぅれー".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Prohibitive ), "とぅるな".to_string()); // とぅんな
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Desiderative ), "とぅいぶさん".to_string());
-
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::AttributiveNonPast ), "とぅいる".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Progressive ), "とぅとーん".to_string()); // とぅろーん
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Continuative ), "とぅてぃ".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Causative ), "とぅらすん".to_string());
         assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Passive ), "とぅらりゆん".to_string());
+        assert_eq!(conjugate_verb("とぅいん", VerbType::II2, VerbConjugation::Volitional ), "とぅら".to_string());
         
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::NonPast ), "ぬぶいん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::NonPastNegative ), "ぬぶらん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::PastNegative ), "ぬぶらんたん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Past ), "ぬぶたん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::NonPastPolite ), "ぬぶいびーん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::YesNoInterrogative ), "ぬぶいみ".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::WhInterrogative ), "ぬぶいが".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Honorific ), "ぬぶいみせーん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Imperative ), "ぬぶれー".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Prohibitive ), "ぬぶるな".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Desiderative ), "ぬぶいぶさん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::AttributiveNonPast ), "ぬぶいる".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Progressive ), "ぬぶとーん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Continuative ), "ぬぶてぃ".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Causative ), "ぬぶらすん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Passive ), "ぬぶらりゆん".to_string());
+        assert_eq!(conjugate_verb("ぬぶいん", VerbType::II2, VerbConjugation::Volitional ), "ぬぶら".to_string());
+        
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::NonPast ), "もーいん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::NonPastNegative ), "もーらん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::PastNegative ), "もーらんたん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Past ), "もーたん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::NonPastPolite ), "もーいびーん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::YesNoInterrogative ), "もーいみ".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::WhInterrogative ), "もーいが".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Honorific ), "もーいみせーん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Imperative ), "もーれー".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Prohibitive ), "もーるな".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Desiderative ), "もーいぶさん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::AttributiveNonPast ), "もーいる".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Progressive ), "もーとーん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Continuative ), "もーてぃ".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Causative ), "もーらすん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Passive ), "もーらりゆん".to_string());
+        assert_eq!(conjugate_verb("もーいん", VerbType::II2, VerbConjugation::Volitional ), "もーら".to_string());
+        
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::NonPast ), "ちいん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::NonPastNegative ), "ちらん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::PastNegative ), "ちらんたん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Past ), "ちっちゃん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::NonPastPolite ), "ちいびーん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::YesNoInterrogative ), "ちいみ".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::WhInterrogative ), "ちいが".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Honorific ), "ちいみせーん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Imperative ), "ちれー".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Prohibitive ), "ちるな".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Desiderative ), "ちいぶさん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::AttributiveNonPast ), "ちいる".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Progressive ), "ちっちょーん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Continuative ), "ちっち".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Causative ), "ちらすん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Passive ), "ちらりゆん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II3, VerbConjugation::Volitional ), "ちら".to_string());
+        
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::NonPast ), "ちいん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::NonPastNegative ), "ちらん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::PastNegative ), "ちらんたん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Past ), "ちちゃん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::NonPastPolite ), "ちいびーん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::YesNoInterrogative ), "ちいみ".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::WhInterrogative ), "ちいが".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Honorific ), "ちいみせーん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Imperative ), "ちれー".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Prohibitive ), "ちるな".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Desiderative ), "ちいぶさん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::AttributiveNonPast ), "ちいる".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Progressive ), "ちちょーん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Continuative ), "ちち".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Causative ), "ちらすん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Passive ), "ちらりゆん".to_string());
+        assert_eq!(conjugate_verb("ちいん", VerbType::II4, VerbConjugation::Volitional ), "ちら".to_string());
+
+                /*
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::NonPast ), "あん".to_string());
+        // assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::NonPastNegative ), "ねーん".to_string());
+        // assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::PastNegative ), "ねーんたん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Past ), "あたん".to_string());
+
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::NonPastPolite ), "ちいびーん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::YesNoInterrogative ), "ちいみ".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::WhInterrogative ), "ちいが".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Honorific ), "ちいみせーん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Imperative ), "ちれー".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Prohibitive ), "ちるな".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Desiderative ), "ちいぶさん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::AttributiveNonPast ), "ある".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Progressive ), "ちちょーん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Continuative ), "ちち".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Causative ), "ちらすん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Passive ), "ちらりゆん".to_string());
+        assert_eq!(conjugate_verb("あん", VerbType::III, VerbConjugation::Volitional ), "あら".to_string());
+         */
+
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::NonPast ), "うん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::NonPastNegative ), "うらん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::PastNegative ), "うらんたん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Past ), "うたん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::NonPastPolite ), "ういびーん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::YesNoInterrogative ), "うみ".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::WhInterrogative ), "うが".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Honorific ), "ういみせーん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Imperative ), "うれー".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Prohibitive ), "うるな".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Desiderative ), "ういぶさん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::AttributiveNonPast ), "うる".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Progressive ), "うとーん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Continuative ), "うてぃ".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Causative ), "うらすん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Passive ), "うらりゆん".to_string());
+        assert_eq!(conjugate_verb("うん", VerbType::III, VerbConjugation::Volitional ), "うら".to_string());
+        
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::NonPast ), "っうん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::NonPastNegative ), "っうらん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::PastNegative ), "っうらんたん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Past ), "っうたん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::NonPastPolite ), "っういびーん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::YesNoInterrogative ), "っうみ".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::WhInterrogative ), "っうが".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Honorific ), "っういみせーん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Imperative ), "っうれー".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Prohibitive ), "っうるな".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Desiderative ), "っういぶさん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::AttributiveNonPast ), "っうる".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Progressive ), "っうとーん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Continuative ), "っうてぃ".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Causative ), "っうらすん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Passive ), "っうらりゆん".to_string());
+        assert_eq!(conjugate_verb("っうん", VerbType::III, VerbConjugation::Volitional ), "っうら".to_string());
     }
 }
 
 /*
+連用形
+
+あてぃ
+あい
+
+erminal 	あん
+an
+"there is" 	あたん
+atan
+"there was" 	ねーん
+neen
+ねーらん
+neeran
+"there isn't" 	ねーんたん
+neentan
+ねーらんたん
+neerantan
+"there wasn't"
+Attributive 	ある
+aru 	あたる
+ataru 	Same as
+above. 	Same as
+above.
+
 I1
 かちゅん　書ちゅん
 ちちゅん　聞ちゅん
@@ -308,21 +461,24 @@ II2
 かいん　刈いん
 ぬぶいん　登いん
 っあらいん　洗いん
+もーいん 舞いん
 
 II3
-きーん　蹴ーん
-っいーん　入ーん
-ひーん　放ーん
-ちーん　切ーん
+きいん　蹴いん
+っいいん　入いん
+ひいん　放いん
+ちいん　切いん
 
 II4
-にーん　煮ーん
-ちーん　着ーん
-っいーん　言ーん
-いーん　座ーん
+にいん　煮いん
+ちいん　着いん
+っいいん　言いん
+いいん　座いん
 
 III
 あん　有ん
 うん　居ん
-やん　
+やん
+
+IV irregulars
 */

@@ -23,6 +23,38 @@ pub enum VerbType {
     IV
 }
 
+/*
+終止類
+ 断定非過去
+ 断定過去
+ 命令
+ 禁止
+ 意志
+ 推量
+ 強調
+ 疑問
+ 過去疑問
+
+接続類
+ 連体非過去
+ 連体過去
+ 中止
+ 仮定
+ 理由
+
+派生類
+ 否定
+ 丁寧
+ 使役
+ 受身
+ 可能
+ 尊敬
+ 継続
+ 希望
+ のだ
+*/
+
+
 pub enum VerbStem {
     // 非過去否定
     Base,       // 基本語幹 base
@@ -31,6 +63,7 @@ pub enum VerbStem {
     // 基本語幹+i  : 命令形　い列
     // 基本語幹+u  : na(な。禁止), ka(まで), kazirii(まで・かぎり)　う列
 
+    
     Connective, // 連用語幹 connective
     // 連用語幹+i : ga(〜しに), ciroo(〜しそう), uusuN(〜できる), busaN(〜したい)　// い列
     // 連用語幹+(j)abiiN/ibiiN : // あ列　い列
@@ -64,7 +97,6 @@ pub enum VerbConjugation {
 
     // ClauseEnding,    // i, does/ and 連用形
     // Connective,      // (y)a
-    
 
     YesNoInterrogative, // ~mi
     WhInterrogative, // ~ga
@@ -72,16 +104,16 @@ pub enum VerbConjugation {
     Honorific,
     Potential, // able to ~juusun
     Desiderative, // desire, want to
-    Imperative,
+    Imperative, // ~ee
     Prohibitive, // prohibitive
 
-    Volitional,
+    Volitional, // ~ra
     Causative, // ~sun
     Passive, // riiN rijuN
     Continuative, // ti form
     AttributiveNonPast, // N -> ru
     AttributivePast, // N -> ru
-    Progressive, // 
+    Progressive, // ~oon, ~een
     
     Gerund,           // 音便語幹+i   : 〜して, ti ティ形
     NonPastPolite,   // biin
@@ -104,7 +136,8 @@ pub fn base_stem(verb: &str, vt: VerbType) -> String {
     use self::VerbType::*;
     match vt {
         IV  => "".to_string(),
-        III | II1 | II2 | II3 | II4  => format!("{}ら", bare_stem),
+        III => format!("{}ら", remove_last_mora(verb)),
+        II1 | II2 | II3 | II4  => format!("{}ら", bare_stem),
         I1 => format!("{}か", bare_stem),
         I2 => format!("{}が", bare_stem),
         I3 => format!("{}た", bare_stem),
@@ -123,7 +156,8 @@ pub fn connective_stem(verb: &str, vt: VerbType) -> String {
     use self::VerbType::*;
     match vt {
         IV  => "".to_string(),
-        III | II1 | II2 | II3 | II4 => format!("{}あ", bare_stem),
+        III => format!("{}あ", remove_last_mora(verb)),
+        II1 | II2 | II3 | II4 => format!("{}あ", bare_stem),
         I1 => format!("{}ちゃ", bare_stem),
         I2 => format!("{}じゃ", bare_stem),
         I3 => format!("{}ちゃ", bare_stem),
@@ -142,7 +176,8 @@ pub fn derivative_stem(verb: &str, vt: VerbType) -> String {
     use self::VerbType::*;
     match vt {
         IV  => "".to_string(),
-        III | II1 | II2 | II3 | II4 => format!("{}あ", bare_stem),
+        III => remove_last_mora(verb),
+        II1 | II2 | II3 | II4 => format!("{}あ", bare_stem),
         I1 => format!("{}ちゃ", bare_stem),
         I2 => format!("{}じゃ", bare_stem),
         I3 => format!("{}ちゃ", bare_stem),
@@ -161,8 +196,7 @@ pub fn euphonic_stem(verb: &str, vt: VerbType) -> String {
     use self::VerbType::*;
     match vt {
         IV  => "".to_string(),
-        III => format!("{}た", bare_stem),
-        // II1 | II2 | II3 | II4 => format!("{}ら", bare_stem),
+        III => format!("{}た", remove_last_mora(verb)),
         II1 => format!("{}った", bare_stem),
         II2 => format!("{}た", bare_stem),
         II3 => format!("{}っちゃ", bare_stem),
@@ -225,13 +259,16 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
             match vt {
                 I1 | I2 | I3 | I4 | I5 | I6 | I7 | I8 | I9 | I10 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "ん"),
                 II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "い"), "ん"),
+                III => verb.to_string(),
                 _ => format!("{}{}", replace_last_with_vowel(&derivative_stem(verb, vt), "う"), "ん"), 
             },
         NonPastNegative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "あ"), "ん"),
         PastNegative => format!("{}{}", replace_last_with_vowel(&base_stem(verb, vt), "あ"), "んたん"),
         Past => format!("{}{}", replace_last_with_vowel(&euphonic_stem(verb, vt), "あ"), "ん"),
+        AttributivePast => format!("{}{}", replace_last_with_vowel(&euphonic_stem(verb, vt), "あ"), "る"),
         NonPastPolite => match vt {
             II1 | II2 | II3 | II4 => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "びーん"), // やびーん
+            III => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "い"), "びーん"),
             _ => format!("{}{}", replace_last_with_vowel(&connective_stem(verb, vt), "あ"), "びーん"),
 
         }
@@ -266,6 +303,8 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
             
         Causative => format!("{}{}", &base_stem(verb, vt), "すん"),
         Passive => format!("{}{}", &base_stem(verb, vt), "りゆん"), // りーん
+
+        Volitional => replace_last_with_vowel(&base_stem(verb, vt), "あ"), // let's
 
         _ => verb.to_string()
     }
