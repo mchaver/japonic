@@ -1,6 +1,6 @@
 use standard::tables::{ROMAJI_TO_HIRAGANA_TABLE};
 use std::str::FromStr;
-pub use standard::util::romaji_to_hiragana;
+pub use standard::util::{romaji_to_hiragana, romaji_to_hiragana_safe};
 
 #[derive(Debug, PartialEq)]
 pub enum VerbType {
