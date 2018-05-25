@@ -1,7 +1,7 @@
+#[cfg(test)]
 use okinawan::util::{two_char_is_single_mora, remove_last_mora};
 use okinawan::lib::*;
 
-#[cfg(test)]
 mod tests {
     use super::*;
     #[test]

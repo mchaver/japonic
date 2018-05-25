@@ -1,4 +1,5 @@
-use util::{truncate_chars, split_chars_at, lookups_string};
+// use util::{truncate_chars, split_chars_at, lookups_string};
+use util::{split_chars_at, lookups_string};
 use okinawan::tables::{HIRAGANA_TO_ROW_TABLE};
 use okinawan::util::{remove_last_mora};
 // use okinawan::util as uu;

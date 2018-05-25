@@ -1,5 +1,5 @@
 use standard;
-use standard::{VerbStem};
+use standard::lib::{VerbStem};
 
 use std::cmp::Ordering::{Equal,Greater,Less};
 
@@ -92,7 +92,7 @@ fn lookup_table(s: &str, table: &'static [(&str,&str)]) -> Option<usize> {
 pub enum VerbType {
     V1Iru, // いる　上一段　かみいちだん
     V1Eru, // える　下一段　しもいちだん
-    Standard(standard::VerbType)
+    Standard(standard::lib::VerbType)
 }
 
 pub enum VerbConjugation {
@@ -104,11 +104,11 @@ pub enum VerbConjugation {
 
 // pub enum VerbStem = standard::VerbStem;
 
-pub fn verb_stem(word: &str, verb_stem: standard::VerbStem, verb_type: VerbType) -> String {
+pub fn verb_stem(word: &str, verb_stem: standard::lib::VerbStem, verb_type: VerbType) -> String {
     match verb_type {
-        VerbType::V1Iru => standard::verb_stem(word,verb_stem,standard::VerbType::V1),
-        VerbType::V1Eru => standard::verb_stem(word,verb_stem,standard::VerbType::V1),
-        VerbType::Standard(vt) => standard::verb_stem(word,verb_stem,vt)
+        VerbType::V1Iru => standard::lib::verb_stem(word,verb_stem,standard::lib::VerbType::V1),
+        VerbType::V1Eru => standard::lib::verb_stem(word,verb_stem,standard::lib::VerbType::V1),
+        VerbType::Standard(vt) => standard::lib::verb_stem(word,verb_stem,vt)
     }
 }
     
@@ -119,7 +119,7 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
         VerbConjugation::NonPastNegative => 
             match vt {
                 VerbType::V1Iru => {
-                    let verb_stem = standard::verb_stem(verb, VerbStem::Irrealis, standard::VerbType::V1);
+                    let verb_stem = standard::lib::verb_stem(verb, VerbStem::Irrealis, standard::lib::VerbType::V1);
                     if verb_stem.chars().count() == 1 {
                         Some(format!("{}{}", verb_stem, "いへん"))
                     } else {
@@ -127,14 +127,14 @@ pub fn conjugate_verb(verb: &str, vt: VerbType, conjugation: VerbConjugation) ->
                     }                
                 },
                 VerbType::V1Eru => {
-                    let verb_stem = standard::verb_stem(verb, VerbStem::Irrealis, standard::VerbType::V1);
+                    let verb_stem = standard::lib::verb_stem(verb, VerbStem::Irrealis, standard::lib::VerbType::V1);
                     if verb_stem.chars().count() == 1 {
                         Some(format!("{}{}", verb_stem, "えへん"))
                     } else {
                         Some(format!("{}{}", verb_stem, "へん"))
                     }                
                 },
-                VerbType::Standard(vt) => Some(format!("{}{}", standard::verb_stem(verb, VerbStem::Irrealis, vt), "へん")),
+                VerbType::Standard(vt) => Some(format!("{}{}", standard::lib::verb_stem(verb, VerbStem::Irrealis, vt), "へん")),
                 
             },
 
@@ -148,8 +148,8 @@ mod tests {
 
     #[test]
     fn test_conjugate_verb() {
-        assert_eq!(conjugate_verb("いく",VerbType::Standard(standard::VerbType::V5KS),VerbConjugation::NonPastNegative), Some("いかへん".to_string()));
-        assert_eq!(conjugate_verb("行く",VerbType::Standard(standard::VerbType::V5KS),VerbConjugation::NonPastNegative), Some("行かへん".to_string()));
+        assert_eq!(conjugate_verb("いく",VerbType::Standard(standard::lib::VerbType::V5KS),VerbConjugation::NonPastNegative), Some("いかへん".to_string()));
+        assert_eq!(conjugate_verb("行く",VerbType::Standard(standard::lib::VerbType::V5KS),VerbConjugation::NonPastNegative), Some("行かへん".to_string()));
 
         assert_eq!(conjugate_verb("食べる",VerbType::V1Eru,VerbConjugation::NonPastNegative), Some("食べへん".to_string()));
         assert_eq!(conjugate_verb("見る",VerbType::V1Iru,VerbConjugation::NonPastNegative), Some("見いへん".to_string()));
