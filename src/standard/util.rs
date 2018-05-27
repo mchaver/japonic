@@ -39,16 +39,18 @@ pub fn romaji_to_hiragana_safe(romaji: &str) -> String {
                 let romaji_peek_ahead_vec = &romaji.chars().collect::<Vec<_>>()[romaji_index + 1 .. romaji_index + 2];
                 let romaji_peek_ahead: String = romaji_peek_ahead_vec.into_iter().collect();
 
-                if romaji_sub == romaji_peek_ahead {
-                    hiragana = format!("{}{}", hiragana, "っ");
-                    romaji_index += 1;
-                    window = 1;
-                    continue;
-                } else if romaji_sub == "n" {
-                    hiragana = format!("{}{}", hiragana, "ん");
-                    romaji_index += 1;
-                    window = 1;
-                    continue;
+                if romaji_peek_ahead != "n" {
+                    if romaji_sub == romaji_peek_ahead {
+                        hiragana = format!("{}{}", hiragana, "っ");
+                        romaji_index += 1;
+                        window = 1;
+                        continue;
+                    } else if romaji_sub == "n" {
+                        hiragana = format!("{}{}", hiragana, "ん");
+                        romaji_index += 1;
+                        window = 1;
+                        continue;
+                    }
                 }
             }
             
@@ -149,5 +151,8 @@ mod tests {
         assert_eq!(romaji_to_hiragana_safe("sme"), "sめ".to_string());
         assert_eq!(romaji_to_hiragana_safe("wあり"), "wあり".to_string());
         assert_eq!(romaji_to_hiragana_safe("nt"), "んt".to_string());
+        assert_eq!(romaji_to_hiragana_safe("nn"), "ん".to_string());
+        assert_eq!(romaji_to_hiragana_safe("tt"), "っt".to_string());
+        assert_eq!(romaji_to_hiragana_safe("a--"), "あーー".to_string());
     }
 }

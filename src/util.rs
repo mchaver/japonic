@@ -65,7 +65,7 @@ pub fn lookups_string(s: &str,x: &str, table: &'static [(&str, &'static [(&str,&
 }
 
 pub fn is_consonant(s: &str) -> bool {
-    s.len() == 1 && !["a","e","i","n","o","u","y"].contains(&s)
+    s.len() == 1 && !["-","a","e","i","n","o","u","y"].contains(&s)
 }
 
 pub fn hiragana_has_consonant(s: &str) -> bool {
