@@ -68,6 +68,10 @@ pub fn is_consonant(s: &str) -> bool {
     s.len() == 1 && !["-","a","e","i","n","o","u","y"].contains(&s)
 }
 
+pub fn is_vowel(s: &str) -> bool {
+    s.len() == 1 && ["a","e","i","o","u"].contains(&s)
+}
+
 pub fn hiragana_has_consonant(s: &str) -> bool {
     s.len() == 1 && !["a","e","i","n","o","u","y"].contains(&s)
 }
